@@ -1,0 +1,73 @@
+on:
+  push:
+    branches: [staging]
+
+name: 🚀 Deploy staging independent study
+
+jobs:
+  web-deploy:
+    name: 🎉 Auto Deploy Staging Independent Study
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚀 Send Telegram Notification
+        run: |
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
+          COMMIT_AUTHOR=$(git log --format=%an -n 1 ${{ github.sha }})
+
+          MESSAGE="Deploy independent study staging is complete. Check it now!\n\nCommit message: $COMMIT_MESSAGE\nCommitted by: $COMMIT_AUTHOR"
+
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "text=${MESSAGE}"
+
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2.3.2
+
+      - name: 📂 Upload exclude public folder into staging
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_SERVER_NOT_PUBLIC_STAGING }}
+          username: ${{ secrets.FTP_USER_NOT_PUBLIC_STAGING }}
+          password: ${{ secrets.FTP_PASSWORD_NOT_PUBLIC_STAGING }}
+          protocol: ftp
+          port: 21
+          exclude: .git*
+            - .git*/**
+            - .github
+        env:
+          FTP_USER: ${{ secrets.FTP_USER_NOT_PUBLIC_STAGING }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD_NOT_PUBLIC_STAGING }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER_NOT_PUBLIC_STAGING }}
+
+      - name: 📂 Upload public folder into staging
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_SERVER_PUBLIC_STAGING }}
+          username: ${{ secrets.FTP_USER_PUBLIC_STAGING }}
+          password: ${{ secrets.FTP_PASSWORD_PUBLIC_STAGING }}
+          protocol: ftp
+          port: 21
+          local-dir: public/
+          exclude: .git*
+            - .git*/**
+            - .github
+        env:
+          FTP_USER: ${{ secrets.FTP_USER_PUBLIC_STAGING }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD_PUBLIC_STAGING }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER_PUBLIC_STAGING }}
+
+      - name: 🚀 Send Telegram Notification
+        run: |
+          MESSAGE="Deploy independent study staging is complete. Check it now!"
+
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "text=${MESSAGE}"
+
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

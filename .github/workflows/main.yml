@@ -11,19 +11,9 @@ jobs:
     steps:
       - name: 🚀 Send Telegram Notification
         run: |
-          # Masuk ke direktori repositori
-          cd $GITHUB_WORKSPACE
+         run: |
+          MESSAGE="🚀 The deploy staging independent study process begins!"
 
-          # Mendapatkan pesan commit terbaru
-          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
-
-          # Mendapatkan nama pengguna yang melakukan commit terbaru
-          COMMIT_AUTHOR=$(git log --format=%an -n 1 ${{ github.sha }})
-
-          # Membuat pesan untuk dikirim ke Telegram
-          MESSAGE="Deploy independent study staging is complete. Check it now!\n\nCommit message: $COMMIT_MESSAGE\nCommitted by: $COMMIT_AUTHOR"
-
-          # Mengirim pesan ke Telegram
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d "chat_id=${TELEGRAM_CHAT_ID}" \
             -d "text=${MESSAGE}"
@@ -70,7 +60,7 @@ jobs:
 
       - name: 🚀 Send Telegram Notification
         run: |
-          MESSAGE="Deploy independent study staging is complete. Check it now!"
+          MESSAGE="🎉 Deploy independent study staging is complete. Check it now!"
 
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d "chat_id=${TELEGRAM_CHAT_ID}" \

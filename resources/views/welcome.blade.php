@@ -27,7 +27,7 @@
                 <form class="login100-form validate-form" method="POST" action="{{Route('loginProcess')}}">
                     @csrf
                     <span class="login100-form-title p-b-43">
-                        <b style="color: #00800d;">Silahkan Login</b>
+                        <b style="color: #00800d;">Silahkan Login 1</b>
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">

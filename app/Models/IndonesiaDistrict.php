@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Alumni extends Model
+class IndonesiaDistrict extends Model
 {
     use HasFactory;
+
+    public function student()
+    {
+        return $this->hasMany(Student::class, 'id_district', 'id');
+    }
 }

@@ -57,7 +57,8 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="./index.html" class="text-nowrap logo-img" style="text-align: center;">
-                        <img style="text-align: center;" src="{{asset('admin/assets/images/logos/logo.png')}}" width="130" alt="" />
+                        <!-- <img style="text-align: center;" src="{{asset('admin/assets/images/logos/logo.png')}}" width="130" alt="" /> -->
+                        SIAKAD
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -74,29 +75,13 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12" style="text-align: center;">
-                            @if (auth()->user()->role == "sekolah")
-                            <b>{{auth()->user()->detailSekolah->nama}}</b>
-                            @else
-                            <b>{{auth()->user()->detailUser->nama}}</b>
-                            @endif
-                            <p>
-                                @if (auth()->user()->role == "admindinkes")
-                                Admin Dinas Kesehatan
-                                @elseif (auth()->user()->role == "petugasdinkes")
-                                Petugas Dinas Kesehatan
-                                @elseif (auth()->user()->role == "sekolah")
-                                Admin Sekolah
-                                @elseif (auth()->user()->role == "walikelas")
-                                Guru Kelas
-                                @endif
-                            </p>
+                            Role
                         </div>
                     </div>
                     <hr>
-                    @if (auth()->user()->role == "admindinkes")
                     <ul id="sidebarnav">
                         <li class="sidebar-item ">
-                            <a class="sidebar-link {{ request()->is('admindinkes') ? 'active' : '' }}" href="{{Route('indexAdminDinkes')}}" aria-expanded="false">
+                            <a class="sidebar-link" href="" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-dashboard"></i>
                                 </span>
@@ -110,7 +95,7 @@
                             <span class="hide-menu">manajemen petugas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->is('admindinkes/search-petugas-kesehatan*') || request()->is('admindinkes/list-petugas-kesehatan*') || request()->is('admindinkes/form-add-petugas-kesehatan') || request()->is('admindinkes/detail-petugas-kesehatan*') || request()->is('admindinkes/form-update-petugas-kesehatan*') ? 'active' : '' }}" href="{{Route('indexPetugasKesehatan')}}" aria-expanded="false">
+                            <a class="sidebar-link" href="" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>
@@ -119,61 +104,8 @@
                         </li>
                     </ul>
                     <ul id="sidebarnav">
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">manajemen sekolah</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->is('admindinkes/list-sekolah*') || request()->is('admindinkes/form-add-sekolah') || request()->is('admindinkes/detail-sekolah/*') || request()->is('admindinkes/form-update-sekolah/*') ? 'active' : '' }}" href="{{Route('indexSekolah')}}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-school"></i>
-                                </span>
-                                <span class="hide-menu">Sekolah</span>
-                            </a>
-                        </li>
-                    </ul>
-                    @elseif (auth()->user()->role == "sekolah")
-                    <ul id="sidebarnav">
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">manajemen kelas</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->is('sekolah/list-kelas*') || request()->is('sekolah/form-add-kelas') || request()->is('sekolah/detail-kelas/*') || request()->is('sekolah/form-update-kelas/*') ? 'active' : '' }}" href="{{Route('indexKelas')}}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-door"></i>
-                                </span>
-                                <span class="hide-menu">Kelas</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->is('sekolah/list-wali-kelas*') || request()->is('sekolah/form-add-wali-kelas') || request()->is('sekolah/detail-wali-kelas/*') || request()->is('sekolah/form-update-wali-kelas/*') ? 'active' : '' }}" href="{{Route('indexWaliKelas')}}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-users"></i>
-                                </span>
-                                <span class="hide-menu">Wali Kelas</span>
-                            </a>
-                        </li>
-                    </ul>
-                    @elseif (auth()->user()->role == "walikelas")
-                    <ul id="sidebarnav">
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">manajemen siswa</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->is('walikelas/list-siswa*') || request()->is('walikelas/form-add-siswa') || request()->is('walikelas/detail-siswa/*') || request()->is('walikelas/form-update-siswa/*') ? 'active' : '' }}" href="{{Route('indexSiswa')}}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-users"></i>
-                                </span>
-                                <span class="hide-menu">Siswa</span>
-                            </a>
-                        </li>
-                    </ul>
-                    @endif
-                    <ul id="sidebarnav">
                         <li class="sidebar-item ">
-                            <a class="sidebar-link" href="{{Route('logout')}}" aria-expanded="false">
+                            <a class="sidebar-link" href="" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-logout"></i>
                                 </span>
@@ -241,11 +173,11 @@
         });
     }
 
-    if (flashdata == 'successDelete') {
+    if (flashdata == 'errorAdd') {
         Swal.fire({
-            title: 'Berhasil',
-            text: 'Data berhasil dihapus',
-            icon: 'success'
+            title: 'Gagal',
+            text: 'Data gagal ditambahkan',
+            icon: 'error'
         });
     }
 
@@ -257,19 +189,19 @@
         });
     }
 
-    if (flashdata == 'errorAdd') {
-        Swal.fire({
-            title: 'Gagal',
-            text: 'Data gagal ditambahkan',
-            icon: 'error'
-        });
-    }
-
     if (flashdata == 'errorUpdate') {
         Swal.fire({
             title: 'Gagal',
             text: 'Data gagal diubah',
             icon: 'error'
+        });
+    }
+
+    if (flashdata == 'successDelete') {
+        Swal.fire({
+            title: 'Berhasil',
+            text: 'Data berhasil dihapus',
+            icon: 'success'
         });
     }
 
@@ -280,25 +212,9 @@
             icon: 'error'
         });
     }
-
-    if (flashdata == 'errorExistingClass') {
-        Swal.fire({
-            title: 'Gagal',
-            text: 'Kelas telah terdaftar di dalam database',
-            icon: 'error'
-        });
-    }
-
-    if (flashdata == 'errorExistingData') {
-        Swal.fire({
-            title: 'Gagal',
-            text: 'Data terdaftar di dalam database',
-            icon: 'error'
-        });
-    }
 </script>
 
-<script>
+<!-- <script>
     function confirmSetujui(event) {
         event.preventDefault();
         const id = event.currentTarget.getAttribute('data-id');
@@ -323,119 +239,7 @@
             }
         });
     }
-</script>
-
-<script>
-    function confirmDeleteUser(event) {
-        event.preventDefault();
-        const id = event.currentTarget.getAttribute('data-id');
-        const role = event.currentTarget.getAttribute('data-role');
-        console.log(id);
-        console.log(role);
-        const url = "{!! url('superadmin/process-delete-user') !!}/" + role;
-        console.log(url);
-        Swal.fire({
-            title: 'Konfirmasi',
-            text: 'Apakah Anda yakin ingin menghapus data?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Lakukan tindakan penghapusan jika dikonfirmasi
-                window.location.href = url + "/" + id;
-            }
-        });
-    }
-</script>
-
-<script>
-    function updatePassword(event) {
-        event.preventDefault();
-        const id = event.currentTarget.getAttribute('data-id');
-        const role = event.currentTarget.getAttribute('data-role');
-        console.log(id);
-        console.log(role);
-        const url = "{!! url('superadmin/process-reset-password') !!}/" + role;
-        console.log(url);
-        Swal.fire({
-            title: 'Reset Password',
-            text: 'Password akan ter-reset menjadi NIP saat ini',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Reset',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Lakukan tindakan penghapusan jika dikonfirmasi
-                window.location.href = url + "/" + id;
-            }
-        });
-    }
-</script>
-
-<script>
-    function updatePasswordRoleAdmin(event) {
-        event.preventDefault();
-        const id = event.currentTarget.getAttribute('data-id');
-        const role = event.currentTarget.getAttribute('data-role');
-        console.log(id);
-        console.log(role);
-        const url = "{!! url('admin/process-reset-password') !!}/" + role;
-        console.log(url);
-        Swal.fire({
-            title: 'Reset Password',
-            text: 'Password akan ter-reset menjadi NIP saat ini',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Reset',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Lakukan tindakan penghapusan jika dikonfirmasi
-                window.location.href = url + "/" + id;
-            }
-        });
-    }
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var fileInput = document.getElementById('fileInput');
-        var pdfPreview = document.getElementById('pdfPreview');
-
-        fileInput.addEventListener('change', function() {
-            var file = fileInput.files[0];
-
-            if (file && file.type === 'application/pdf') {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    var pdfData = e.target.result;
-
-                    // Tampilkan pratinjau PDF
-                    displayPDF(pdfData);
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                // Reset pratinjau jika file tidak valid
-                pdfPreview.src = '';
-            }
-        });
-
-        function displayPDF(data) {
-            pdfPreview.src = data;
-        }
-    });
-</script>
+</script> -->
 
 @yield('script')
 

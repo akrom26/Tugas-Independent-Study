@@ -105,7 +105,7 @@
                     </ul>
                     <ul id="sidebarnav">
                         <li class="sidebar-item ">
-                            <a class="sidebar-link" href="" aria-expanded="false">
+                            <a class="sidebar-link" href="{{Route('logout')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-logout"></i>
                                 </span>

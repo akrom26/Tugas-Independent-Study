@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Builder\Class_;
 use PhpParser\Builder\ClassConst;
 
 /*
@@ -33,4 +34,6 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::get('/kelas', [ClassController::class, 'index'])->name('indexClass');
     Route::get('/form-tambah-kelas', [ClassController::class, 'formAdd'])->name('formAdd');
     Route::post('/proses-tambah-kelas', [ClassController::class, 'addClassAction'])->name('addClassAction');
+    Route::get('/form-edit/{id}', [ClassController::class, 'formEdit'])->name('formEdit');
+    Route::post('/proses-update-kelas', [ClassController::class, 'updateClassAction'])->name('updateClassAction');
 });

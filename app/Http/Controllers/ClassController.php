@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SchoolClass;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class ClassController extends Controller
 {
@@ -29,6 +30,25 @@ class ClassController extends Controller
         $kelas->program = $request->program;
         $kelas->major = $request->jurusan;
         $kelas->save();
+
+        return redirect()->back();
+    }
+
+    public function formEdit($id)
+    {
+        $data = SchoolClass::where('id_school_class', $id)->first();
+        return view('admin.kelas.edit', compact('data'));
+    }
+
+    public function updateClassAction(Request $request)
+    {
+        $data = [
+            'sub_class' => $request->sub_kelas,
+            'program' => $request->program,
+            'major' => $request->jurusan
+        ];
+
+        SchoolClass::where('id_school_class', $request->id)->update($data);
 
         return redirect()->back();
     }

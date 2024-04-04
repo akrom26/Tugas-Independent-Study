@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Kelas</th>
+                                <th scope="col">Program</th>
                                 <th scope="col">Sub-kelas</th>
                                 <th scope="col">Jurusan</th>
                                 <th scope="col">Aksi</th>
@@ -34,13 +34,13 @@
                         <tbody>
                             @foreach ($data as $item)
                             <tr>
-                                <th scope="row">{{ $data->firstItem() + $loop->index }}</th>
-                                <td>{{ $item->kelas }}</td>
-                                <td>{{ $item->sub_kelas }}</td>
-                                <td>{{ $item->jurusan }}</td>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $item->program }}</td>
+                                <td>{{ $item->sub_class }}</td>
+                                <td>{{ $item->major }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <a href="{{Route('formUpdateKelas', ['id' => $item->id_kelas])}}" class=" btn btn-success"><i class="ti ti-edit"></i></a>
+                                        <a href="{{Route('formEdit', ['id' => $item->id_school_class])}}" class=" btn btn-success"><i class="ti ti-edit"></i></a>
                                         <a data-role="{{auth()->user()->role}}" data-id="{{ $item->id_kelas }}" onclick="confirmDeleteKelas(event)" type="button" class="btn btn-danger"><i class="ti ti-trash-x-filled"></i></a>
                                     </div>
                                 </td>

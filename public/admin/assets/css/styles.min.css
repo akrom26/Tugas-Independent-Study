@@ -19228,7 +19228,7 @@ textarea.form-control-lg {
 }
 
 .sidebar-nav ul .sidebar-item.selected>.sidebar-link,.sidebar-nav ul .sidebar-item.selected>.sidebar-link.active,.sidebar-nav ul .sidebar-item>.sidebar-link.active {
-    background-color: #00AA13;
+    background-color: blue;
     color: black;
     font-weight: 600;
 }

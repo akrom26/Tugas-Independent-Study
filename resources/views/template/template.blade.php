@@ -92,14 +92,14 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">manajemen petugas</span>
+                            <span class="hide-menu">manajemen kelas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="" aria-expanded="false">
+                            <a class="sidebar-link" href="{{Route('indexClass')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>
-                                <span class="hide-menu">Petugas Kesehatan</span>
+                                <span class="hide-menu">Petugas Kelas</span>
                             </a>
                         </li>
                     </ul>

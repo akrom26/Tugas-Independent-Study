@@ -27,4 +27,12 @@ Route::post('/login-process', [AuthController::class, 'loginProcess'])->name('lo
 // role admin
 Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('indexAdmin');
+
+    // manajemen siswa
+    Route::get('/student', [StudentController::class, 'index'])->name('indexStudent');
+    Route::get('/form-add-student', [StudentController::class, 'formAdd'])->name('formAdd');
+    Route::post('/process-add-student', [StudentController::class, 'addStudentAction'])->name('addStudentAction');
+    Route::get('/form-edit-student/{id}', [StudentController::class, 'formEdit'])->name('formEdit');
+    Route::post('/process-edit-student', [StudentController::class, 'updateStudentAction'])->name('updateStudentAction');
+    Route::get('/delete-student/{id}', [StudentController::class, 'deleteStudentAction'])->name('deleteStudentAction');
 });

@@ -13,7 +13,7 @@ class StudentParent extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $primaryKey = 'id_origin_school';
+    protected $primaryKey = 'id_parent';
     protected $table = 'parents';
 
     protected static function boot()

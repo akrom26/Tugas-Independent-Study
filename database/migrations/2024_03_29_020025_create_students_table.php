@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id_student')->primary();
             $table->string('id_parent');
             $table->string('id_origin_school');
-            $table->string('id_school_class');
+            $table->string('id_school_class')->nullable();
             $table->unsignedBigInteger('id_province');
             $table->unsignedBigInteger('id_city');
             $table->unsignedBigInteger('id_district');

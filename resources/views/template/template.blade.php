@@ -92,24 +92,10 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">manajemen petugas</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-users"></i>
-                                </span>
-                                <span class="hide-menu">Petugas Kesehatan</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul id="sidebarnav">
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">manajemen siswa</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->is('administrator/student') ? 'active' : '' }}" href="{{Route('indexStudent')}}" aria-expanded="false">
+                            <a class="sidebar-link {{ request()->is('administrator/student/*')  ? 'active' : '' }}" href="{{Route('indexStudent')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>

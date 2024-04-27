@@ -8,7 +8,7 @@
                 Manajemen Siswa
             </div>
             <div class="card-body">
-                <a type="button" href="" class="mb-3 btn btn-primary">Tambah Siswa</a>
+                <a type="button" href="{{Route('formAdd')}}" class="mb-3 btn btn-primary">Tambah Siswa</a>
                 <form action="" method="GET" class="mb-3">
                     @csrf
                     <div class="row">

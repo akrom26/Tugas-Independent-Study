@@ -109,7 +109,7 @@
                             <span class="hide-menu">manajemen siswa</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->is('administrator/student') ? 'active' : '' }}" href="{{Route('indexStudent')}}" aria-expanded="false">
+                            <a class="sidebar-link {{ request()->is('administrator/student/*')  ? 'active' : '' }}" href="{{Route('indexStudent')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>

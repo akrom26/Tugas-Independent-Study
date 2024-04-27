@@ -7,6 +7,8 @@ use App\Models\OriginSchool;
 use App\Models\Student;
 use App\Models\StudentParent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -25,6 +27,8 @@ class StudentController extends Controller
     public function addStudentAction(Request $request)
     {
         try {
+            DB::beginTransaction();
+
             $originSchool = new OriginSchool();
             $originSchool->name = $request->name_origin_school;
             $originSchool->type = $request->type_origin_school;
@@ -70,13 +74,18 @@ class StudentController extends Controller
             $student->status = $request->status;
             $student->save();
 
-            $message = "Sukses tambah data siswa dengan nama: " . $request->nama . '-> ' . auth()->user()->username;
+            DB::commit();
+
+            $message = "Sukses tambah data siswa dengan nama: " . $request->name . '-> ' . auth()->user()->username;
             LogHelper::Log($message);
             return redirect()->back()->with(['flash' => 'successAdd']);
         } catch (\Throwable $th) {
-            $message = "Gagal tambah data siswa dengan nama: " . $request->nama . '-> ' . auth()->user()->username . 'reason : '. $th;
+            DB::rollBack();
+
+            $message = "Gagal tambah data siswa dengan nama: " . $request->name . '-> ' . auth()->user()->username . 'reason : '. $th;
             LogHelper::Log($message);
             return redirect()->back()->with(['flash' => 'errorAdd']);
         }
     }
+
 }

@@ -33,6 +33,7 @@ Route::get('villages', [AreaController::class, 'villages'])->name('villages');
 // role admin
 Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('indexAdmin');
+    Route::get('/parent/search', [ParentController::class, 'searchParent'])->name('searchParent');
 
     // manajemen siswa
     Route::get('/student', [StudentController::class, 'index'])->name('indexStudent');

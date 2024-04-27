@@ -8,14 +8,14 @@
                 Form tambah data siswa
             </div>
             <form method="POST" action="{{Route('addStudentAction')}}" id="formAddSiswa" enctype="multipart/form-data">
-            @csrf
-            <div class="card-body">
-                <!-- data siswa -->
-                <div class="card">
-                    <div class="card-header">
-                        Data siswa
-                    </div>
-                    <div class="card-body">
+                @csrf
+                <div class="card-body">
+                    <!-- data siswa -->
+                    <div class="card">
+                        <div class="card-header">
+                            Data siswa
+                        </div>
+                        <div class="card-body">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nama *</label>
                                 <input type="text" class="form-control" placeholder="Nama siswa" name="name" required>
@@ -102,179 +102,252 @@
                                 <label for="exampleFormControlInput1" class="form-label">Scan Kartu Keluarga (.pdf) *</label>
                                 <input type="file" class="form-control" name="identity" required>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- data orang tua -->
-                <div class="card">
-                    <div class="card-header">
-                        Data Orang Tua Siswa
-                    </div>
-                    <div class="card-body">
-                            <h4>Data Ayah</h4>
-                            <hr>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nama Ayah *</label>
-                                <input type="text" class="form-control" placeholder="Nama ayah" name="father_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NIK Ayah *</label>
-                                <input type="number" class="form-control" placeholder="NIK ayah" name="father_nik" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
-                                <input type="number" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
-                                <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ayah *</label>
-                                <select class="form-control" name="father_education" required>
-                                    <option>==Pilih Salah Satu==</option>
-                                    <option value="SD">SD</option>
-                                    <option value="SMP">SMP</option>
-                                    <option value="SMA">SMA/SMK</option>
-                                    <option value="S1">S1</option>
-                                    <option value="S2">S2</option>
-                                    <option value="S3">S3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ayah *</label>
-                                <input type="string" class="form-control" placeholder="Pekerjaan ayah" name="father_job" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
-                                <input type="number" class="form-control" placeholder="Pendapatan ayah" name="father_income" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
-                                <input type="number" class="form-control" placeholder="Nomor HP ayah" name="father_phone" required>
-                            </div>
-                            <h4>Data Ibu</h4>
-                            <hr>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nama Ibu *</label>
-                                <input type="text" class="form-control" placeholder="Nama ibu" name="mother_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NIK Ibu *</label>
-                                <input type="number" class="form-control" placeholder="NIK ibu" name="mother_nik" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
-                                <input type="number" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>
-                                <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ibu *</label>
-                                <select class="form-control" name="mother_education" required>
-                                    <option>==Pilih Salah Satu==</option>
-                                    <option value="SD">SD</option>
-                                    <option value="SMP">SMP</option>
-                                    <option value="SMA">SMA/SMK</option>
-                                    <option value="S1">S1</option>
-                                    <option value="S2">S2</option>
-                                    <option value="S3">S3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ibu *</label>
-                                <input type="string" class="form-control" placeholder="Pekerjaan ibu" name="mother_job" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ibu *</label>
-                                <input type="number" class="form-control" placeholder="Pendapatan ibu" name="mother_income" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
-                                <input type="number" class="form-control" placeholder="Nomor HP ibu" name="mother_phone" required>
-                            </div>
-                    </div>
-                </div>
-                <!-- data sekolah sebelumnya -->
-                <div class="card">
-                    <div class="card-header">
-                        Data Sekolah Sebelumnya
-                    </div>
-                    <div class="card-body">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nama Sekolah *</label>
-                                <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tipe Sekolah *</label>
-                                <input type="number" class="form-control" placeholder="Tipe sekolah" name="type_origin_school" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NPSN *</label>
-                                <input type="number" class="form-control" placeholder="NPSN" name="npsn_origin_school" required>
-                            </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <button type="button" class="btn btn-success" id="buttonAddSiswa">Tambah data siswa</button>
-                </div>
-            </div>
             </form>
         </div>
     </div>
-    @endsection
-    @section('script')
-    <script>
-        // get data wilayah
-        function onChangeSelect(url, id, name) {
-            $.ajax({
-                url: url,
-                type: 'GET',
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $('#' + name).empty();
-                    $('#' + name).append('<option>==Pilih Salah Satu==</option>');
+    <!-- data orang tua -->
+    <div class="card">
 
-                    $.each(data, function(key, value) {
-                        $('#' + name).append('<option value="' + key + '">' + value + '</option>');
-                    });
+        <div class="card-header">
+            Data Orang Tua Siswa
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Data orang tua sudah pernah dimasukan
+            </button>
+            <h4>Data Ayah</h4>
+            <hr>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nama Ayah *</label>
+                <input type="text" class="form-control" placeholder="Nama ayah" name="father_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">NIK Ayah *</label>
+                <input type="number" class="form-control" placeholder="NIK ayah" name="father_nik" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
+                <input type="number" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
+                <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ayah *</label>
+                <select class="form-control" name="father_education" required>
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="SD">SD</option>
+                    <option value="SMP">SMP</option>
+                    <option value="SMA">SMA/SMK</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ayah *</label>
+                <input type="string" class="form-control" placeholder="Pekerjaan ayah" name="father_job" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
+                <input type="number" class="form-control" placeholder="Pendapatan ayah" name="father_income" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
+                <input type="number" class="form-control" placeholder="Nomor HP ayah" name="father_phone" required>
+            </div>
+            <h4>Data Ibu</h4>
+            <hr>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nama Ibu *</label>
+                <input type="text" class="form-control" placeholder="Nama ibu" name="mother_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">NIK Ibu *</label>
+                <input type="number" class="form-control" placeholder="NIK ibu" name="mother_nik" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
+                <input type="number" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>
+                <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ibu *</label>
+                <select class="form-control" name="mother_education" required>
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="SD">SD</option>
+                    <option value="SMP">SMP</option>
+                    <option value="SMA">SMA/SMK</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ibu *</label>
+                <input type="string" class="form-control" placeholder="Pekerjaan ibu" name="mother_job" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ibu *</label>
+                <input type="number" class="form-control" placeholder="Pendapatan ibu" name="mother_income" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
+                <input type="number" class="form-control" placeholder="Nomor HP ibu" name="mother_phone" required>
+            </div>
+        </div>
+    </div>
+    <!-- data sekolah sebelumnya -->
+    <div class="card">
+        <div class="card-header">
+            Data Sekolah Sebelumnya
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nama Sekolah *</label>
+                <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tipe Sekolah *</label>
+                <input type="number" class="form-control" placeholder="Tipe sekolah" name="type_origin_school" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">NPSN *</label>
+                <input type="number" class="form-control" placeholder="NPSN" name="npsn_origin_school" required>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="button" class="btn btn-success" id="buttonAddSiswa">Tambah data siswa</button>
+    </div>
+</div>
+</form>
+</div>
+</div>
+
+<!-- Modal data oeang tua -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Cari data orang tua</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="GET" action="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input class="form-control" name="searchParent" id="searchParent">
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div id="dataParent">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+@section('script')
+<script>
+    // get data wilayah
+    function onChangeSelect(url, id, name) {
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: {
+                id: id
+            },
+            success: function(data) {
+                $('#' + name).empty();
+                $('#' + name).append('<option>==Pilih Salah Satu==</option>');
+
+                $.each(data, function(key, value) {
+                    $('#' + name).append('<option value="' + key + '">' + value + '</option>');
+                });
+            }
+        });
+    }
+    $(function() {
+        $('#province').on('change', function() {
+            onChangeSelect('{{ route("cities") }}', $(this).val(), 'city');
+        });
+        $('#city').on('change', function() {
+            onChangeSelect('{{ route("districts") }}', $(this).val(), 'district');
+        })
+        $('#district').on('change', function() {
+            onChangeSelect('{{ route("villages") }}', $(this).val(), 'village');
+        })
+    });
+
+    // alert
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('buttonAddSiswa').addEventListener('click', function() {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah anda yakin akan menyimpan data?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('formAddSiswa').submit();
                 }
             });
-        }
-        $(function() {
-            $('#province').on('change', function() {
-                onChangeSelect('{{ route("cities") }}', $(this).val(), 'city');
-            });
-            $('#city').on('change', function() {
-                onChangeSelect('{{ route("districts") }}', $(this).val(), 'district');
-            })
-            $('#district').on('change', function() {
-                onChangeSelect('{{ route("villages") }}', $(this).val(), 'village');
-            })
         });
+    });
+</script>
 
-        // alert
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('buttonAddSiswa').addEventListener('click', function() {
-                Swal.fire({
-                    title: 'Konfirmasi',
-                    text: 'Apakah anda yakin akan menyimpan data?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    cancelButtonText: 'Tidak'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('formAddSiswa').submit();
+<!-- to real time search parent existing data -->
+<script>
+    $(document).ready(function() {
+        $('#searchParent').keyup(function() {
+            var searchText = $(this).val().trim();
+
+            if (searchText !== '') {
+                $.ajax({
+                    url: '{{ Route("searchParent") }}',
+                    type: 'GET',
+                    data: {
+                        searchParent: searchText
+                    },
+                    success: function(response) {
+                        var dataParent = $('#dataParent');
+                        dataParent.empty();
+
+                        if (response.length > 0) {
+                            var html = '<ul>';
+                            $.each(response, function(index, parent) {
+                                html += '<li>' + parent.father_nik + ' - ' + parent.father_name + '</li>';
+                            });
+                            html += '</ul>';
+                            dataParent.append(html);
+                        } else {
+                            dataParent.text('No data found');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
                     }
                 });
-            });
+            } else {
+                $('#dataParent').empty();
+            }
         });
-    </script>
-    @endsection
+    });
+</script>
+@endsection

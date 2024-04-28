@@ -35,9 +35,9 @@
                             @foreach ($data as $item)
                             <tr>
                                 <th scope="row">{{ $data->firstItem() + $loop->index }}</th>
-                                <td>{{ $item->nama_lengkap }}</td>
-                                <td>{{ $item->nisn }}</td>
-                                <td>{{ $item->Kelas->kelas }} {{ $item->Kelas->jurusan }} {{ $item->Kelas->sub_kelas }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->nis }}</td>
+                                <td>Menunggu development manajemen kelas</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a href="" class=" btn btn-warning"><i class="ti ti-info-circle-filled"></i></a>

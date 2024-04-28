@@ -68,7 +68,7 @@ class StudentController extends Controller
             $student->id_district = $request->id_district;
             $student->id_village = $request->id_village;
             $student->nis = $request->nis;
-            $student->nisin = $request->nisn;
+            $student->nisn = $request->nisn;
             $student->nik = $request->nik;
             $student->date_birth = $request->date_birth;
             $student->place_birth = $request->place_birth;

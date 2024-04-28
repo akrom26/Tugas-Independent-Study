@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Models\OriginSchool;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,14 @@ Route::get('villages', [AreaController::class, 'villages'])->name('villages');
 // role admin
 Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('indexAdmin');
+
+    // route untuk melakukan search orang tua
     Route::get('/parent/search', [ParentController::class, 'searchParent'])->name('searchParent');
+    Route::get('/parent/detail', [ParentController::class, 'detailParent'])->name('detailParent');
+
+    // route untuk melakukan search sekolah asal
+    Route::get('/origin-school/search', [OriginSchoolController::class, 'searchOriginSchool'])->name('searchOriginSchool');
+    Route::get('/origin-school/detail', [OriginSchoolController::class, 'detailOriginSchool'])->name('detailOriginSchool');
 
     // manajemen siswa
     Route::get('/student', [StudentController::class, 'index'])->name('indexStudent');

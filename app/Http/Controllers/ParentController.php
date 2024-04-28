@@ -16,4 +16,12 @@ class ParentController extends Controller
 
         return response()->json($parents);
     }
+
+    public function detailParent(Request $request)
+    {
+        $id = $request->input('id');
+        $parent = StudentParent::where('id_parent', $id)->first();
+
+        return response()->json($parent);
+    }
 }

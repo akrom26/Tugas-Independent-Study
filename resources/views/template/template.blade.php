@@ -226,6 +226,30 @@
             icon: 'error'
         });
     }
+
+    if (flashdata == 'errorAddExistingStudent') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'NIK atau NISN siswa telah terdaftar sebelumnya',
+            icon: 'error'
+        });
+    }
+
+    if (flashdata == 'errorAddExistingParent') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Data orang tua telah terdaftar.',
+            icon: 'error'
+        });
+    }
+
+    if (flashdata == 'errorAddExistingOriginSchool') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Data orang tua telah terdaftar.',
+            icon: 'error'
+        });
+    }
 </script>
 
 <!-- <script>

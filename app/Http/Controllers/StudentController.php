@@ -14,8 +14,9 @@ class StudentController extends Controller
 {
     public function index(Request $request)
     {
+        $searchTerm = $request->search;
         if ($request->search) {
-            $data = Student::where('name', 'LIKE', "%{$$request->search}%")->paginate(8);
+            $data = Student::where('name', 'LIKE', "%{$searchTerm}%")->paginate(8);
         } else {
             $data = Student::paginate(8);
         }

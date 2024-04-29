@@ -27,6 +27,30 @@ class StudentController extends Controller
     public function addStudentAction(Request $request)
     {
         try {
+            // check existing nik or nisn
+            $student = Student::where('nik', $request->nik)->orWhere('nisn', $request->nisn)->first();
+            if ($student != null) {
+                $message = "Gagal tambah data NIK siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                LogHelper::Log($message);
+                return redirect()->back()->with(['flash' => 'errorAddExistingStudent']);
+            }
+
+            // checking existing parent data
+            $parent = Student::where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
+            if ($parent != null) {
+                $message = "Gagal tambah data orang tua siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                LogHelper::Log($message);
+                return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
+            }
+
+            // checking existing origin school
+            $originSchool = OriginSchool::where('npsn', $request->npsn)->first();
+            if($originSchool != null) {
+                $message = "Gagal tambah data sekolah telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                LogHelper::Log($message);
+                return redirect()->back()->with(['flash' => 'errorAddExistingOriginSchool']);
+            }
+            
             DB::beginTransaction();
 
             $originSchool = new OriginSchool();

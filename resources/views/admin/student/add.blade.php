@@ -34,7 +34,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Tempat Lahir *</label>
-                                <input type="number" class="form-control" placeholder="Tempat Lahir siswa" name="place_birth" required>
+                                <input type="text" class="form-control" placeholder="Tempat Lahir siswa" name="place_birth" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir *</label>
@@ -96,12 +96,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Pas Foto *</label>
-                                <input type="file" class="form-control" name="photo" required accept="">
+                                <input type="file" class="form-control" name="photo" required accept="image/*">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Scan Kartu Keluarga (.pdf) *</label>
-                                <input type="file" class="form-control" name="identity" required>
+                                <input type="file" class="form-control" name="identity" required accept=".pdf">
                             </div>
+
             </form>
         </div>
     </div>
@@ -213,7 +214,7 @@
             </button>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama Sekolah *</label>
-                <input name="id_origin_school" hidden> 
+                <input name="id_origin_school" hidden>
                 <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required id="name_origin_school">
             </div>
             <div class="mb-3">
@@ -358,7 +359,7 @@
                         if (response.length > 0) {
                             var html = '<table class="table"><thead><tr><th scope="col">NIK Ayah</th><th scope="col">Nama Ayah</th></tr>';
                             $.each(response, function(index, parent) {
-                                html += '<tr><th>' + parent.father_nik + '</th><th>' + parent.father_name + '</th><th><button class="btn btn-sm btn-success" onclick=getParent("'+parent.id_parent+'")>Pilih</button></tr>';
+                                html += '<tr><th>' + parent.father_nik + '</th><th>' + parent.father_name + '</th><th><button class="btn btn-sm btn-success" onclick=getParent("' + parent.id_parent + '")>Pilih</button></tr>';
                             });
                             html += '</table>';
                             dataParent.append(html);
@@ -382,7 +383,9 @@
         $.ajax({
             url: '{{ route("detailParent", ["id" => ""]) }}' + parentId,
             method: 'GET',
-            data: { parentId: parentId },
+            data: {
+                parentId: parentId
+            },
             success: function(response) {
                 document.getElementById('father_name').value = response.father_name;
                 document.getElementById('father_name').readOnly = true;
@@ -447,7 +450,7 @@
                         if (response.length > 0) {
                             var html = '<table class="table"><thead><tr><th scope="col">Nama Sekolah</th><th scope="col">NPSN</th></tr>';
                             $.each(response, function(index, school) {
-                                html += '<tr><th>' + school.name + '</th><th>' + school.npsn + '</th><th><button class="btn btn-sm btn-success" onclick=getOriginSchool("'+school.id_origin_school+'")>Pilih</button></tr>';
+                                html += '<tr><th>' + school.name + '</th><th>' + school.npsn + '</th><th><button class="btn btn-sm btn-success" onclick=getOriginSchool("' + school.id_origin_school + '")>Pilih</button></tr>';
                             });
                             html += '</table>';
                             dataOriginSchool.append(html);
@@ -471,7 +474,9 @@
         $.ajax({
             url: '{{ route("detailOriginSchool", ["id" => ""]) }}' + id,
             method: 'GET',
-            data: { id: id },
+            data: {
+                id: id
+            },
             success: function(response) {
                 document.getElementById('name_origin_school').value = response.name;
                 document.getElementById('name_origin_school').readOnly = true;

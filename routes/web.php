@@ -50,4 +50,5 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::get('/student/form-edit-student/{id}', [StudentController::class, 'formEdit'])->name('formEdit');
     Route::post('/student/process-edit-student', [StudentController::class, 'updateStudentAction'])->name('updateStudentAction');
     Route::get('/student/delete-student/{id}', [StudentController::class, 'deleteStudentAction'])->name('deleteStudentAction');
+    Route::get('/student/detail/{id}', [StudentController::class, 'detailStudent'])->name('detailStudent');
 });

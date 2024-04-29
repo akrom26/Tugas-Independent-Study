@@ -12,9 +12,14 @@ use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Student::paginate(8);
+        if ($request->search) {
+            $data = Student::where('name', 'LIKE', "%{$$request->search}%")->paginate(8);
+        } else {
+            $data = Student::paginate(8);
+        }
+        
 
         return view('admin.student.index', compact('data'));
     }

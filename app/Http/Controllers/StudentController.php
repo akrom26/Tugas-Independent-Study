@@ -20,7 +20,7 @@ class StudentController extends Controller
         } else {
             $data = Student::paginate(8);
         }
-        
+
 
         return view('admin.student.index', compact('data'));
     }
@@ -42,28 +42,38 @@ class StudentController extends Controller
             }
 
             // checking existing parent data
-            $parent = Student::where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
-            if ($parent != null) {
-                $message = "Gagal tambah data orang tua siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
-                LogHelper::Log($message);
-                return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
+            if ($request->id_parent == null) {
+                $parent = StudentParent::where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
+                if ($parent != null) {
+                    $message = "Gagal tambah data orang tua siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                    LogHelper::Log($message);
+                    return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
+                }
             }
 
             // checking existing origin school
-            $originSchool = OriginSchool::where('npsn', $request->npsn)->first();
-            if($originSchool != null) {
-                $message = "Gagal tambah data sekolah telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
-                LogHelper::Log($message);
-                return redirect()->back()->with(['flash' => 'errorAddExistingOriginSchool']);
+            if ($request->id_origin_school == null) {
+                $originSchool = OriginSchool::where('npsn', $request->npsn)->first();
+                if ($originSchool != null) {
+                    $message = "Gagal tambah data sekolah telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                    LogHelper::Log($message);
+                    return redirect()->back()->with(['flash' => 'errorAddExistingOriginSchool']);
+                }
             }
-            
+
             DB::beginTransaction();
 
-            $originSchool = new OriginSchool();
-            $originSchool->name = $request->name_origin_school;
-            $originSchool->type = $request->type_origin_school;
-            $originSchool->npsn = $request->npsn_origin_school;
-            $originSchool->save();
+            if ($request->id_origin_school == null) {
+                $originSchool = new OriginSchool();
+                $originSchool->name = $request->name_origin_school;
+                $originSchool->type = $request->type_origin_school;
+                $originSchool->npsn = $request->npsn_origin_school;
+                $originSchool->save();
+                $id_origin_school = $originSchool->id_origin_school;
+            } else {
+                $id_origin_school = $request->id_origin_school;
+            }
+
 
             if ($request->id_parent == null) {
                 $parent = new StudentParent();
@@ -92,7 +102,7 @@ class StudentController extends Controller
 
             $student = new Student();
             $student->id_parent = $id_parent;
-            $student->id_origin_school = $originSchool->id_origin_school;
+            $student->id_origin_school = $id_origin_school;
             $student->id_province = $request->id_province;
             $student->id_city = $request->id_city;
             $student->id_district = $request->id_district;
@@ -123,5 +133,12 @@ class StudentController extends Controller
             LogHelper::Log($message);
             return redirect()->back()->with(['flash' => 'errorAdd']);
         }
+    }
+
+    public function detailStudent($id)
+    {
+        $data = Student::where('id_student', $id)->first();
+
+        return view('admin.student.detail', compact('data'));
     }
 }

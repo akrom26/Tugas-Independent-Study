@@ -19625,3 +19625,11 @@ ul {
 .table-scrollable {
     overflow: scroll;
 }
+
+.data-detail {
+    max-height: 500px;
+    overflow: scroll;
+    background-color: #074173;
+    padding: 2em;
+    border-radius: 10px;
+}

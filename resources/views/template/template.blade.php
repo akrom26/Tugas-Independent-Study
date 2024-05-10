@@ -95,7 +95,7 @@
                             <span class="hide-menu">manajemen kelas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ Route ('indexSchoolClass') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>

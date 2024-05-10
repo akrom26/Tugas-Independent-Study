@@ -49,6 +49,9 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::get('/schoolclass', [SchoolClassController::class, 'index'])->name('indexSchoolClass');
     Route::get('/student/form-add-schoolclass', [SchoolClassController::class, 'formAddSchoolClass'])->name('formAddSchoolClass');
     Route::post('/student/process-add-schoolclass', [SchoolClassController::class, 'addSchoolClassAction'])->name('addSchoolClassAction');
-    Route::get('/student/detail/{id}', [SchoolClassController::class, 'detailSchoolClass'])->name('detailSchoolClass');
+    Route::get('/student/form-edit-schoolclass/{id}', [SchoolClassController::class, 'formEditSchoolClass'])->name('formEditSchoolClass');
+    Route::post('/student/process-edit-schoolclass', [SchoolClassController::class, 'updateSchoolClassAction'])->name('updateSchoolClassAction');
+    Route::get('/student/delete-schoolclass/{id}', [SchoolClassController::class, 'deleteSchoolClassAction'])->name('deleteSchoolClassAction');
+    Route::get('/student/detail-schoolclass/{id}', [SchoolClassController::class, 'detailSchoolClass'])->name('detailSchoolClass');
 
 });

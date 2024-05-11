@@ -129,7 +129,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
-                <input type="number" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth">
+                <input type="text" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
@@ -171,7 +171,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
-                <input type="number" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth">
+                <input type="text" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>

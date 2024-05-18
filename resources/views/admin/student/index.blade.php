@@ -37,12 +37,18 @@
                                 <th scope="row">{{ $data->firstItem() + $loop->index }}</th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->nis }}</td>
-                                <td>Menunggu development manajemen kelas</td>
+                                @if($item->schoolClass == null)
+                                <td>
+                                <span class="badge rounded-pill text-bg-danger" style="background-color: #EE2737 !important;">Belum memiliki kelas</span>
+                                </td>
+                                @else
+                                <td>{{$item->schoolClass->classroom}} - {{$item->schoolClass->major}} - {{$item->schoolClass->sub_class}} ({{$item->schoolClass->program}})</td>
+                                @endif
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a href="{{Route('detailStudent', ['id' => $item->id_student])}}" class=" btn btn-warning"><i class="ti ti-info-circle-filled"></i></a>
                                         <a href="{{Route('formEdit', ['id' => $item->id_student])}}" class=" btn btn-success"><i class="ti ti-edit"></i></a>
-                                        <a data-role="{{auth()->user()->role}}" data-id="{{ $item->id_siswa }}" onclick="confirmDeleteSiswa(event)" type="button" class="btn btn-danger"><i class="ti ti-trash-x-filled"></i></a>
+                                        <a data-role="{{auth()->user()->role}}" data-id="{{ $item->id_student }}" onclick="confirmDeleteSiswa(event)" type="button" class="btn btn-danger"><i class="ti ti-trash-x-filled"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -68,7 +74,7 @@
         const role = event.currentTarget.getAttribute('data-role');
         console.log(id);
         console.log(role);
-        const url = "{!! url('walikelas/delete-siswa') !!}/" + role;
+        const url = "{!! url('administrator/student/delete-student') !!}";
         console.log(url);
         Swal.fire({
             title: 'Konfirmasi',

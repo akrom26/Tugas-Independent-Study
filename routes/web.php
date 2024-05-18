@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SchoolClassController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\OriginSchool;
 use Illuminate\Support\Facades\Route;

@@ -49,3 +49,31 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+<script>
+    function confirmDeleteSchoolClass(event) {
+        event.preventDefault();
+        const id = event.currentTarget.getAttribute('data-id');
+        const role = event.currentTarget.getAttribute('data-role');
+        console.log(id);
+        console.log(role);
+        const url = "{!! url('administrator/schoolclass/delete-schoolclass') !!}";
+        console.log(url);
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Apakah Anda yakin ingin menghapus data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url + "/" + id;
+            }
+        });
+    }
+</script>
+@endsection

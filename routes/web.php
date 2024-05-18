@@ -51,4 +51,14 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::post('/student/process-edit-student', [StudentController::class, 'updateStudentAction'])->name('updateStudentAction');
     Route::get('/student/delete-student/{id}', [StudentController::class, 'deleteStudentAction'])->name('deleteStudentAction');
     Route::get('/student/detail/{id}', [StudentController::class, 'detailStudent'])->name('detailStudent');
+    
+    //kelas
+    Route::get('/schoolclass', [SchoolClassController::class, 'index'])->name('indexSchoolClass');
+    Route::get('/schoolclass/form-add-schoolclass', [SchoolClassController::class, 'formAddSchoolClass'])->name('formAddSchoolClass');
+    Route::post('/schoolclass/process-add-schoolclass', [SchoolClassController::class, 'addSchoolClassAction'])->name('addSchoolClassAction');
+    Route::get('/schoolclass/form-edit-schoolclass/{id}', [SchoolClassController::class, 'formEditSchoolClass'])->name('formEditSchoolClass');
+    Route::post('/schoolclass/process-edit-schoolclass', [SchoolClassController::class, 'updateSchoolClassAction'])->name('updateSchoolClassAction');
+    Route::get('/schoolclass/delete-schoolclass/{id}', [SchoolClassController::class, 'deleteSchoolClassAction'])->name('deleteSchoolClassAction');
+    Route::get('/schoolclass/detail-schoolclass/{id}', [SchoolClassController::class, 'detailSchoolClass'])->name('detailSchoolClass');
+
 });

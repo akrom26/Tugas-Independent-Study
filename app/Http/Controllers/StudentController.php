@@ -253,4 +253,24 @@ class StudentController extends Controller
             return redirect()->back()->with(['flash' => 'errorAdd']);
         }
     }
+
+    public function deleteStudentAction($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            Student::where('id_student', $id)->delete();
+            DB::commit();
+
+            $message = "Sukses hapus data Siswa";
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'successDelete']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            $message = "Gagal hapus data Kelas => ".$th;
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'errorDelete']);
+        }
+    }
 }

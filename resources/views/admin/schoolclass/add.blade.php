@@ -15,16 +15,16 @@
                         <div class="card-header">
                             Data Kelas
                         </div>
-                        <div class="card-body">
-                            <div class="mb-3">
+                        <div class="row">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Kelas *</label>
                                 <input type="number" class="form-control" placeholder="Tingkat Kelas" name="classroom" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Sub-Kelas *</label>
                                 <input type="text" class="form-control" placeholder="Nama Sub-Kelas" name="sub_class" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Program *</label>
                                 <select class="form-control" name="program" required>
                                     <option>==Pilih Salah Satu==</option>
@@ -32,7 +32,7 @@
                                     <option value="reguler">Reguler</option>
                                 </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Jurusan *</label>
                                 <select class="form-control" name="major" required>
                                     <option>==Pilih Salah Satu==</option>

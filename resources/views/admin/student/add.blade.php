@@ -15,32 +15,32 @@
                         <div class="card-header">
                             Data siswa
                         </div>
-                        <div class="card-body">
-                            <div class="mb-3">
+                        <div class="card-body row">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Nama *</label>
                                 <input type="text" class="form-control" placeholder="Nama siswa" name="name" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">NIK *</label>
                                 <input type="number" class="form-control" placeholder="NIK siswa" name="nik" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">NIS *</label>
                                 <input type="number" class="form-control" placeholder="NIS siswa" name="nis" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">NISN *</label>
                                 <input type="number" class="form-control" placeholder="NISN siswa" name="nisn" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Tempat Lahir *</label>
                                 <input type="text" class="form-control" placeholder="Tempat Lahir siswa" name="place_birth" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir *</label>
                                 <input type="date" class="form-control" placeholder="Tanggal Lahir siswa" name="date_birth" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="column">
                                 <label for="exampleFormControlInput1" class="form-label">Jenis Kelamin *</label>
                                 <select class="form-control" name="gender" required>
                                     <option>==Pilih Salah Satu==</option>
@@ -52,9 +52,9 @@
                                 <div class="card-header">
                                     Alamat siswa
                                 </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Provinsi *</label>
+                                <div class="card-body row">
+                                    <div class="column">
+                                        <label for="exampleFormControlInput1" class="form-label column">Provinsi *</label>
                                         @php
                                         $provinces = new App\Http\Controllers\AreaController;
                                         $provinces= $provinces->provinces();
@@ -66,30 +66,30 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Kabupaten/Kota *</label>
+                                    <div class="column">
+                                        <label for="exampleFormControlInput1" class="form-label column">Kabupaten/Kota *</label>
                                         <select class="form-control" name="id_city" id="city" required>
                                             <option>==Pilih Salah Satu==</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Kecamatan *</label>
+                                    <div class="column">
+                                        <label for="exampleFormControlInput1" class="form-label column">Kecamatan *</label>
                                         <select class="form-control" name="id_district" id="district" required>
                                             <option>==Pilih Salah Satu==</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Desa *</label>
+                                    <div class="column">
+                                        <label for="exampleFormControlInput1" class="form-label column">Desa *</label>
                                         <select class="form-control" name="id_village" id="village" required>
                                             <option>==Pilih Salah Satu==</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Kode POS *</label>
+                                    <div class="column">
+                                        <label for="exampleFormControlInput1" class="form-label column">Kode POS *</label>
                                         <input type="number" class="form-control" placeholder="Kode Pos" name="pos_code" required>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Alamat *</label>
+                                    <div class="column">
+                                        <label for="exampleFormControlInput1" class="form-label column">Alamat *</label>
                                         <textarea class="form-control" name="address" required></textarea>
                                     </div>
                                 </div>
@@ -118,103 +118,109 @@
             </button>
             <h4>Data Ayah</h4>
             <hr>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nama Ayah *</label>
-                <input type="text" class="form-control" name="id_parent" id="id_parent" hidden>
-                <input type="text" class="form-control" placeholder="Nama ayah" name="father_name" required id="father_name">
+            <div class="row">
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Nama Ayah *</label>
+                    <input type="text" class="form-control" name="id_parent" id="id_parent" hidden>
+                    <input type="text" class="form-control" placeholder="Nama ayah" name="father_name" required id="father_name">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">NIK Ayah *</label>
+                    <input type="number" class="form-control" placeholder="NIK ayah" name="father_nik" required id="father_nik">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
+                    <input type="text" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
+                    <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required id="father_date_birth">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label column">Pendidikan Ayah *</label>
+                    <select class="form-control" name="father_education" required id="father_education">
+                        <option>==Pilih Salah Satu==</option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA">SMA/SMK</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ayah *</label>
+                    <input type="string" class="form-control" placeholder="Pekerjaan ayah" name="father_job" required id="father_job">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
+                    <select class="form-control" name="father_income" required id="father_income">
+                        <option>==Pilih Salah Satu==</option>
+                        <option value="Kurang dari Rp 500.000">Kurang dari Rp 500.000</option>
+                        <option value="Rp 500.000 - 1.000.000">Rp 500.000 - 1.000.000</option>
+                        <option value="Rp 1.000.000 - 2.000.000">Rp 1.000.000 - 2.000.000</option>
+                        <option value="Rp 3.000.000 - 5.000.000">Rp 3.000.000 - 5.000.000</option>
+                        <option value="Lebih dari Rp 5.000.000">Lebih dari Rp 5.000.000</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
+                    <input type="number" class="form-control" placeholder="Nomor HP ayah" name="father_phone" required id="father_phone">
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">NIK Ayah *</label>
-                <input type="number" class="form-control" placeholder="NIK ayah" name="father_nik" required id="father_nik">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
-                <input type="text" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
-                <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required id="father_date_birth">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ayah *</label>
-                <select class="form-control" name="father_education" required id="father_education">
-                    <option>==Pilih Salah Satu==</option>
-                    <option value="SD">SD</option>
-                    <option value="SMP">SMP</option>
-                    <option value="SMA">SMA/SMK</option>
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                    <option value="S3">S3</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ayah *</label>
-                <input type="string" class="form-control" placeholder="Pekerjaan ayah" name="father_job" required id="father_job">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
-                <select class="form-control" name="father_income" required id="father_income">
-                    <option>==Pilih Salah Satu==</option>
-                    <option value="Kurang dari Rp 500.000">Kurang dari Rp 500.000</option>
-                    <option value="Rp 500.000 - 1.000.000">Rp 500.000 - 1.000.000</option>
-                    <option value="Rp 1.000.000 - 2.000.000">Rp 1.000.000 - 2.000.000</option>
-                    <option value="Rp 3.000.000 - 5.000.000">Rp 3.000.000 - 5.000.000</option>
-                    <option value="Lebih dari Rp 5.000.000">Lebih dari Rp 5.000.000</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
-                <input type="number" class="form-control" placeholder="Nomor HP ayah" name="father_phone" required id="father_phone">
-            </div>
+            
             <h4>Data Ibu</h4>
             <hr>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nama Ibu *</label>
-                <input type="text" class="form-control" placeholder="Nama ibu" name="mother_name" required id="mother_name">
+            <div class="row">
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Nama Ibu *</label>
+                    <input type="text" class="form-control" placeholder="Nama ibu" name="mother_name" required id="mother_name">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">NIK Ibu *</label>
+                    <input type="number" class="form-control" placeholder="NIK ibu" name="mother_nik" required id="mother_nik">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
+                    <input type="text" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>
+                    <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required id="mother_date_birth">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Pendidikan Ibu *</label>
+                    <select class="form-control" name="mother_education" required id="mother_education">
+                        <option>==Pilih Salah Satu==</option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA">SMA/SMK</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ibu *</label>
+                    <input type="string" class="form-control" placeholder="Pekerjaan ibu" name="mother_job" required id="mother_job">
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label column">Pendapatan Ibu *</label>
+                    <select class="form-control" name="mother_income" required id="mother_income">
+                        <option>==Pilih Salah Satu==</option>
+                        <option value="Kurang dari Rp 500.000">Kurang dari Rp 500.000</option>
+                        <option value="Rp 500.000 - 1.000.000">Rp 500.000 - 1.000.000</option>
+                        <option value="Rp 1.000.000 - 2.000.000">Rp 1.000.000 - 2.000.000</option>
+                        <option value="Rp 3.000.000 - 5.000.000">Rp 3.000.000 - 5.000.000</option>
+                        <option value="Lebih dari Rp 5.000.000">Lebih dari Rp 5.000.000</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
+                    <input type="number" class="form-control" placeholder="Nomor HP ibu" name="mother_phone" required id="mother_phone">
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">NIK Ibu *</label>
-                <input type="number" class="form-control" placeholder="NIK ibu" name="mother_nik" required id="mother_nik">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
-                <input type="text" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>
-                <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required id="mother_date_birth">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ibu *</label>
-                <select class="form-control" name="mother_education" required id="mother_education">
-                    <option>==Pilih Salah Satu==</option>
-                    <option value="SD">SD</option>
-                    <option value="SMP">SMP</option>
-                    <option value="SMA">SMA/SMK</option>
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                    <option value="S3">S3</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ibu *</label>
-                <input type="string" class="form-control" placeholder="Pekerjaan ibu" name="mother_job" required id="mother_job">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ibu *</label>
-                <select class="form-control" name="mother_income" required id="mother_income">
-                    <option>==Pilih Salah Satu==</option>
-                    <option value="Kurang dari Rp 500.000">Kurang dari Rp 500.000</option>
-                    <option value="Rp 500.000 - 1.000.000">Rp 500.000 - 1.000.000</option>
-                    <option value="Rp 1.000.000 - 2.000.000">Rp 1.000.000 - 2.000.000</option>
-                    <option value="Rp 3.000.000 - 5.000.000">Rp 3.000.000 - 5.000.000</option>
-                    <option value="Lebih dari Rp 5.000.000">Lebih dari Rp 5.000.000</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
-                <input type="number" class="form-control" placeholder="Nomor HP ibu" name="mother_phone" required id="mother_phone">
-            </div>
+            
         </div>
     </div>
     <!-- data sekolah sebelumnya -->

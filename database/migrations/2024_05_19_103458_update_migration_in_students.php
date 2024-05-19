@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn('id_student_class');
+            $table->dropColumn('id_school_class');
             $table->string('id_school_class')->nullable();
         });
     }

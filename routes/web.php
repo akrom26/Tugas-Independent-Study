@@ -55,7 +55,7 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::get('/student/detail/{id}', [StudentController::class, 'detailStudent'])->name('detailStudent');
     Route::get('/student-not-have-class/search', [StudentController::class, 'studentNotHaveClass'])->name('studentNotHaveClass');
     
-    //kelas
+    // manajemen kelas
     Route::get('/schoolclass', [SchoolClassController::class, 'index'])->name('indexSchoolClass');
     Route::get('/schoolclass/form-add-schoolclass', [SchoolClassController::class, 'formAddSchoolClass'])->name('formAddSchoolClass');
     Route::post('/schoolclass/process-add-schoolclass', [SchoolClassController::class, 'addSchoolClassAction'])->name('addSchoolClassAction');
@@ -71,4 +71,12 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::post('/schoolclass/move-student-class-action', [SchoolClassController::class, 'moveStudentClassAction'])->name('moveStudentClassAction');
 
     Route::post('/schoolclass/move-all-student-class-action]', [SchoolClassController::class, 'moveStudentAllClassAction'])->name('moveStudentAllClassAction');
+
+    // manajemen user
+    Route::get('/user', [UserController::class, 'index'])->name('indexUser');
+    Route::get('/user/form-add-user', [UserController::class, 'formAddUser'])->name('formAddUser');
+    Route::post('/user/process-add-user', [UserController::class, 'addUserAction'])->name('addUserAction');
+    Route::get('/user/form-edit-user/{id}', [UserController::class, 'formEditUser'])->name('formEditUser');
+    Route::post('/user/process-edit-user', [UserController::class, 'editUserAction'])->name('editUserAction');
+    Route::get('/user/delete-user/{id}', [UserController::class, 'deleteUserAction'])->name('deleteUserAction');
 });

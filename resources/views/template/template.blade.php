@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SISKES</title>
+    <title>SIAKAD</title>
     <link rel="shortcut icon" type="image/png" href="{{asset('admin/assets/images/logos/favicon.png')}}" />
     <link rel="stylesheet" href="{{asset('admin/assets/css/styles.min.css')}}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -75,7 +75,8 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12" style="text-align: center;">
-                            Role
+                            {{auth()->user()->name}}<br>
+                            Role : {{auth()->user()->role}}
                         </div>
                     </div>
                     <hr>
@@ -109,9 +110,21 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('administrator/schoolclass/*')  ? 'active' : '' }}" href="{{ Route ('indexSchoolClass') }}" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-users"></i>
+                                    <i class="ti ti-door"></i>
                                 </span>
                                 <span class="hide-menu">Kelas</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">manajemen user</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link {{ request()->is('administrator/user/*')  ? 'active' : '' }}" href="{{ Route ('indexUser') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-users"></i>
+                                </span>
+                                <span class="hide-menu">User</span>
                             </a>
                         </li>
                     </ul>
@@ -245,6 +258,46 @@
         Swal.fire({
             title: 'Gagal',
             text: 'Data sekolah telah terdaftar, silahkan pilih data sekolah pada menu.',
+            icon: 'error'
+        });
+    }
+
+    if (flashdata == 'passwordNotMatch') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Password tidak valid.',
+            icon: 'error'
+        });
+    }
+
+    if (flashdata == 'passwordMin8Char') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Password minimal 8 karakter.',
+            icon: 'error'
+        });
+    }
+
+    if (flashdata == 'passwordHaveSpace') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Password dilarang menggunakan spasi.',
+            icon: 'error'
+        });
+    }
+
+    if (flashdata == 'userAlreadyRegister') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Username sudah terdaftar, gunakan username lain.',
+            icon: 'error'
+        });
+    }
+
+    if (flashdata == 'usernameHaveSpace') {
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Username dilarang menggunakan spasi.',
             icon: 'error'
         });
     }

@@ -51,6 +51,10 @@
                                 Data Siswa
                             </div>
                             <div class="card-body">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-success mb-3" href="{{Route('addStudentClass', ['id' => $data->id_school_class])}}">Tambah siswa</a>
+                                    <a href="{{Route('moveStudentClass', ['id' => $data->id_school_class])}}" class="btn btn-warning mb-3">Pindah kelas</a>
+                                </div>
                                 <table class="table table-responsive table-striped">
                                     <tr>
                                         <th>No.</th>

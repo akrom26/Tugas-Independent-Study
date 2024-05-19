@@ -53,6 +53,7 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::post('/student/process-edit-student', [StudentController::class, 'updateStudentAction'])->name('updateStudentAction');
     Route::get('/student/delete-student/{id}', [StudentController::class, 'deleteStudentAction'])->name('deleteStudentAction');
     Route::get('/student/detail/{id}', [StudentController::class, 'detailStudent'])->name('detailStudent');
+    Route::get('/student-not-have-class/search', [StudentController::class, 'studentNotHaveClass'])->name('studentNotHaveClass');
     
     //kelas
     Route::get('/schoolclass', [SchoolClassController::class, 'index'])->name('indexSchoolClass');
@@ -63,4 +64,11 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::get('/schoolclass/delete-schoolclass/{id}', [SchoolClassController::class, 'deleteSchoolClassAction'])->name('deleteSchoolClassAction');
     Route::get('/schoolclass/detail-schoolclass/{id}', [SchoolClassController::class, 'detailSchoolClass'])->name('detailSchoolClass');
 
+    Route::get('/schoolclass/{id}/add-student', [SchoolClassController::class, 'addStudentClass'])->name('addStudentClass');
+    Route::get('/schoolclass/{id}/student/{id_student}', [SchoolClassController::class, 'addStudentClassAction'])->name('addStudentClassAction');
+
+    Route::get('/schoolclass/{id}/move-student-class', [SchoolClassController::class, 'moveStudentClass'])->name('moveStudentClass');
+    Route::post('/schoolclass/move-student-class-action', [SchoolClassController::class, 'moveStudentClassAction'])->name('moveStudentClassAction');
+
+    Route::post('/schoolclass/move-all-student-class-action]', [SchoolClassController::class, 'moveStudentAllClassAction'])->name('moveStudentAllClassAction');
 });

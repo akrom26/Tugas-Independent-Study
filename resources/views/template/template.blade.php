@@ -244,7 +244,7 @@
     if (flashdata == 'errorAddExistingOriginSchool') {
         Swal.fire({
             title: 'Gagal',
-            text: 'Data orang tua telah terdaftar, silahkan pilih data sekolah pada menu.',
+            text: 'Data sekolah telah terdaftar, silahkan pilih data sekolah pada menu.',
             icon: 'error'
         });
     }

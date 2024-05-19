@@ -136,22 +136,22 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
-                <input type="number" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth" value="{{$data->studentParent->father_place_birth}}">
+                <input type="text" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth" value="{{$data->studentParent->father_birth_place}}">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
-                <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required id="father_date_birth" value="{{$data->studentParent->father_date_birth}}">
+                <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required id="father_date_birth" value="{{$data->studentParent->father_birth_date}}">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Pendidikan Ayah *</label>
                 <select class="form-control" name="father_education" required id="father_education">
                     <option>==Pilih Salah Satu==</option>
-                    <option value="SD" @if ($data->mother_education == 'SD') selected @endif>SD</option>
-                    <option value="SMP" @if ($data->mother_education == 'SMP') selected @endif>SMP</option>
-                    <option value="SMA" @if ($data->mother_education == 'SMA') selected @endif>SMA/SMK</option>
-                    <option value="S1" @if ($data->mother_education == 'S1') selected @endif>S1</option>
-                    <option value="S2" @if ($data->mother_education == 'S2') selected @endif>S2</option>
-                    <option value="S3" @if ($data->mother_education == 'S3') selected @endif>S3</option>
+                    <option value="SD" @if ($data->studentParent->father_education == 'SD') selected @endif>SD</option>
+                    <option value="SMP" @if ($data->studentParent->father_education == 'SMP') selected @endif>SMP</option>
+                    <option value="SMA" @if ($data->studentParent->father_education == 'SMA') selected @endif>SMA/SMK</option>
+                    <option value="S1" @if ($data->studentParent->father_education == 'S1') selected @endif>S1</option>
+                    <option value="S2" @if ($data->studentParent->father_education == 'S2') selected @endif>S2</option>
+                    <option value="S3" @if ($data->studentParent->father_education == 'S3') selected @endif>S3</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -160,7 +160,14 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
-                <input type="number" class="form-control" placeholder="Pendapatan ayah" name="father_income" required id="father_income" value="{{$data->studentParent->father_income}}">
+                <select class="form-control" name="father_income" required id="father_income">
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="Kurang dari Rp 500.000" @if($data->studentParent->father_income == 'Kurang dari Rp 500.000') selected @endif>Kurang dari Rp 500.000</option>
+                    <option value="Rp 500.000 - 1.000.000" @if($data->studentParent->father_income == 'Rp 500.000 - 1.000.000') selected @endif>Rp 500.000 - 1.000.000</option>
+                    <option value="Rp 1.000.000 - 2.000.000" @if($data->studentParent->father_income == 'Rp 1.000.000 - 2.000.000') selected @endif>Rp 1.000.000 - 2.000.000</option>
+                    <option value="Rp 3.000.000 - 5.000.000" @if($data->studentParent->father_income == 'Rp 3.000.000 - 5.000.000') selected @endif>Rp 3.000.000 - 5.000.000</option>
+                    <option value="Lebih dari Rp 5.000.000" @if($data->studentParent->father_income == 'Lebih dari Rp 5.000.000') selected @endif>Lebih dari Rp 5.000.000</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
@@ -178,22 +185,22 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
-                <input type="number" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth" value="{{$data->studentParent->mother_place_birth}}">
+                <input type="text" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth" value="{{$data->studentParent->mother_birth_place}}">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>
-                <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required id="mother_date_birth" value="{{$data->studentParent->mother_date_birth}}">
+                <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required id="mother_date_birth" value="{{$data->studentParent->mother_birth_date}}">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Pendidikan Ibu *</label>
                 <select class="form-control" name="mother_education" required id="mother_education">
                     <option>==Pilih Salah Satu==</option>
-                    <option value="SD" @if ($data->mother_education == 'SD') selected @endif>SD</option>
-                    <option value="SMP" @if ($data->mother_education == 'SMP') selected @endif>SMP</option>
-                    <option value="SMA" @if ($data->mother_education == 'SMA') selected @endif>SMA/SMK</option>
-                    <option value="S1" @if ($data->mother_education == 'S1') selected @endif>S1</option>
-                    <option value="S2" @if ($data->mother_education == 'S2') selected @endif>S2</option>
-                    <option value="S3" @if ($data->mother_education == 'S3') selected @endif>S3</option>
+                    <option value="SD" @if ($data->studentParent->mother_education == 'SD') selected @endif>SD</option>
+                    <option value="SMP" @if ($data->studentParent->mother_education == 'SMP') selected @endif>SMP</option>
+                    <option value="SMA" @if ($data->studentParent->mother_education == 'SMA') selected @endif>SMA/SMK</option>
+                    <option value="S1" @if ($data->studentParent->mother_education == 'S1') selected @endif>S1</option>
+                    <option value="S2" @if ($data->studentParent->mother_education == 'S2') selected @endif>S2</option>
+                    <option value="S3" @if ($data->studentParent->mother_education == 'S3') selected @endif>S3</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -202,7 +209,14 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Pendapatan Ibu *</label>
-                <input type="number" class="form-control" placeholder="Pendapatan ibu" name="mother_income" required id="mother_income" value="{{$data->studentParent->mother_income}}">
+                <select class="form-control" name="mother_income" required id="mother_income">
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="Kurang dari Rp 500.000" @if($data->studentParent->mother_income == 'Kurang dari Rp 500.000') selected @endif>Kurang dari Rp 500.000</option>
+                    <option value="Rp 500.000 - 1.000.000" @if($data->studentParent->mother_income == 'Rp 500.000 - 1.000.000') selected @endif>Rp 500.000 - 1.000.000</option>
+                    <option value="Rp 1.000.000 - 2.000.000" @if($data->studentParent->mother_income == 'Rp 1.000.000 - 2.000.000') selected @endif>Rp 1.000.000 - 2.000.000</option>
+                    <option value="Rp 3.000.000 - 5.000.000" @if($data->studentParent->mother_income == 'Rp 3.000.000 - 5.000.000') selected @endif>Rp 3.000.000 - 5.000.000</option>
+                    <option value="Lebih dari Rp 5.000.000" @if($data->studentParent->mother_income == 'Lebih dari Rp 5.000.000') selected @endif>Lebih dari Rp 5.000.000</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
@@ -221,12 +235,18 @@
             </button>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nama Sekolah *</label>
-                <input name="id_origin_school" hidden>
+                <input name="id_origin_school" hidden value="{{$data->originSchool->id_origin_school}}">
                 <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required id="name_origin_school" value="{{$data->originSchool->name}}">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tipe Sekolah *</label>
-                <input type="number" class="form-control" placeholder="Tipe sekolah" name="type_origin_school" required id="type_origin_school" value="{{$data->originSchool->type}}">
+                <select class="form-control" name="type_origin_school" required id="type_origin_school">
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="Mts/Madrasah Tsanawiyah" @if($data->originSchool->type == 'Mts/Madrasah Tsanawiyah') selected @endif>Mts/Madrasah Tsanawiyah</option>
+                    <option value="PKBM" @if($data->originSchool->type == 'PKBM') selected @endif>PKBM</option>
+                    <option value="Pondok Pesantren" @if($data->originSchool->type == 'Pondok Pesantren') selected @endif>Pondok Pesantren</option>
+                    <option value="SMP Negeri/Swasta" @if($data->originSchool->type == 'SMP Negeri/Swasta') selected @endif>SMP Negeri/Swasta</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">NPSN *</label>
@@ -235,7 +255,7 @@
         </div>
     </div>
     <div class="mb-3">
-        <button type="button" class="btn btn-success" id="buttonUpdateSiswa">Tambah data siswa</button>
+        <button type="button" class="btn btn-success" id="buttonUpdateSiswa">Update data siswa</button>
     </div>
 </div>
 </form>

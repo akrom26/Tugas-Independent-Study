@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Http\Helpers\LogHelper;
+use App\Models\Student;
 
 class SchoolClassController extends Controller
 {
@@ -109,5 +110,100 @@ class SchoolClassController extends Controller
             LogHelper::Log($message);
             return redirect()->back()->with(['flash' => 'errorDelete']);
         }
+    }
+
+    public function addStudentClass(Request $request, $id)
+    {
+        $searchTerm = $request->search;
+        if ($request->search) {
+            $data = Student::where('name', 'LIKE', "%{$searchTerm}%")->where('id_school_class', null)->paginate(8);
+        } else {
+            $data = Student::where('id_school_class', null)->paginate(8);
+        }
+
+        return view('admin.schoolclass.add-student', compact('data', 'id'));
+    }
+
+    public function addStudentClassAction($id, $id_student)
+    {
+        try {
+            DB::beginTransaction();
+            $data = [
+                'id_school_class' => $id
+            ];
+
+            Student::where('id_student', $id_student)->update($data);
+            DB::commit();
+
+            $message = "Sukses tambah siswa ke dalam kelas";
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'successAdd']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            $message = "Gagal tambah siswa ke dalam kelas => ".$th;
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'errorAdd']);
+        }
+    }
+
+    public function moveStudentClass($id)
+    {
+        $data = SchoolClass::where('id_school_class', $id)->first();
+        $students = Student::where('id_school_class', $id)->paginate(8);
+        $schoolClasses = SchoolClass::all();
+
+        return view('admin.schoolclass.move-student-class', compact('data', 'students', 'schoolClasses'));
+    }
+
+    public function moveStudentClassAction(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $data = [
+                'id_school_class' => $request->id_school_class
+            ];
+
+            Student::where('id_student', $request->id)->update($data);
+            DB::commit();
+
+            $message = "Sukses memindahkan siswa";
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'successUpdate']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            $message = "Gagal memindahkan siswa => ".$th;
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'errorUpdate']);
+        } 
+    }
+
+    public function moveStudentAllClassAction(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $schoolClass = SchoolClass::where('id_school_class', $request->id)->first();
+
+            foreach ($schoolClass->students as $student) {
+                $data = [
+                    'id_school_class' => $request->id_school_class
+                ];
+    
+                Student::where('id_student', $student->id_student)->update($data);
+            }
+            
+            DB::commit();
+
+            $message = "Sukses memindahkan seluruh siswa";
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'successUpdate']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            $message = "Gagal memindahkan seluruh siswa => ".$th;
+            LogHelper::Log($message);
+            return redirect()->back()->with(['flash' => 'errorUpdate']);
+        } 
     }
 }

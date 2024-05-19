@@ -153,7 +153,14 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
-                <input type="number" class="form-control" placeholder="Pendapatan ayah" name="father_income" required id="father_income">
+                <select class="form-control" name="father_income" required id="father_income">
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="Kurang dari Rp 500.000">Kurang dari Rp 500.000</option>
+                    <option value="Rp 500.000 - 1.000.000">Rp 500.000 - 1.000.000</option>
+                    <option value="Rp 1.000.000 - 2.000.000">Rp 1.000.000 - 2.000.000</option>
+                    <option value="Rp 3.000.000 - 5.000.000">Rp 3.000.000 - 5.000.000</option>
+                    <option value="Lebih dari Rp 5.000.000">Lebih dari Rp 5.000.000</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
@@ -195,7 +202,14 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Pendapatan Ibu *</label>
-                <input type="number" class="form-control" placeholder="Pendapatan ibu" name="mother_income" required id="mother_income">
+                <select class="form-control" name="mother_income" required id="mother_income">
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="Kurang dari Rp 500.000">Kurang dari Rp 500.000</option>
+                    <option value="Rp 500.000 - 1.000.000">Rp 500.000 - 1.000.000</option>
+                    <option value="Rp 1.000.000 - 2.000.000">Rp 1.000.000 - 2.000.000</option>
+                    <option value="Rp 3.000.000 - 5.000.000">Rp 3.000.000 - 5.000.000</option>
+                    <option value="Lebih dari Rp 5.000.000">Lebih dari Rp 5.000.000</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
@@ -219,7 +233,13 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Tipe Sekolah *</label>
-                <input type="number" class="form-control" placeholder="Tipe sekolah" name="type_origin_school" required id="type_origin_school">
+                <select class="form-control" name="type_origin_school" required id="type_origin_school">
+                    <option>==Pilih Salah Satu==</option>
+                    <option value="Mts/Madrasah Tsanawiyah">Mts/Madrasah Tsanawiyah</option>
+                    <option value="PKBM">PKBM</option>
+                    <option value="Pondok Pesantren">Pondok Pesantren</option>
+                    <option value="SMP Negeri/Swasta">SMP Negeri/Swasta</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">NPSN *</label>

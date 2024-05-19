@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\OriginSchool;
+use App\Models\StudentParent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +55,7 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::get('/student/delete-student/{id}', [StudentController::class, 'deleteStudentAction'])->name('deleteStudentAction');
     Route::get('/student/detail/{id}', [StudentController::class, 'detailStudent'])->name('detailStudent');
     Route::get('/student-not-have-class/search', [StudentController::class, 'studentNotHaveClass'])->name('studentNotHaveClass');
+    Route::get('/student/download/{id}', [StudentController::class, 'downloadAction'])->name('downloadAction');
     
     // manajemen kelas
     Route::get('/schoolclass', [SchoolClassController::class, 'index'])->name('indexSchoolClass');

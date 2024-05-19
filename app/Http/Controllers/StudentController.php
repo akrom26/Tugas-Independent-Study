@@ -9,6 +9,7 @@ use App\Models\StudentParent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentController extends Controller
 {
@@ -201,7 +202,7 @@ class StudentController extends Controller
 
                     OriginSchool::where('id_origin_school', $request->id_origin_school)->update($data);
                     $id_origin_school = $request->id_origin_school;
-                }  
+                }
             } else {
                 $id_origin_school = $request->id_origin_school;
             }
@@ -267,7 +268,7 @@ class StudentController extends Controller
                     ];
                     StudentParent::where('id_parent', $student->studentParent->id_parent)->update($data);
                     $id_parent = $student->studentParent->id_parent;
-                }    
+                }
             }
 
             $data = [
@@ -286,19 +287,19 @@ class StudentController extends Controller
                 'pos_code' => $request->pos_code,
                 'name' => $request->name,
                 'status' => $request->status,
-                
+
             ];
 
             if ($request->photo != null) {
                 $dataPhoto = [
-                    'photo' => $request-> $request->photo->store('public/pas_foto')
+                    'photo' => $request->$request->photo->store('public/pas_foto')
                 ];
                 array_merge($data, $dataPhoto);
-            } 
+            }
 
             if ($request->identity != null) {
                 $dataIdentity = [
-                    'identity' => $request-> $request->photo->store('public/pas_foto')
+                    'identity' => $request->$request->photo->store('public/pas_foto')
                 ];
                 array_merge($data, $dataIdentity);
             }
@@ -347,5 +348,31 @@ class StudentController extends Controller
             ->get();
 
         return response()->json($parents);
+    }
+
+    public function downloadAction($id)
+    {
+        // data dasar user
+        $student = Student::where('id_student', $id)->first();
+        $data = [
+            'student' => $student->toArray(), // Konversi model menjadi array
+        ];
+
+        // data orang tua
+        $parent = $student->studentParent;
+        $dataParent = [
+            'parent' => $parent->toArray()
+        ];
+        $data = array_merge($data, $dataParent);
+
+        // data sekolah sebelumnya
+        $originSchool = $student->originSchool;
+        $dataSchool = [
+            'school' => $originSchool->toArray()
+        ];
+        $data = array_merge($data, $dataSchool);
+        
+        $pdf = PDF::loadView('template.pdf', $data);
+        return $pdf->download('invoice.pdf');
     }
 }

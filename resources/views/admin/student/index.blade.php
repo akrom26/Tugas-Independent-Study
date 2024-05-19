@@ -49,6 +49,7 @@
                                         <a href="{{Route('detailStudent', ['id' => $item->id_student])}}" class=" btn btn-warning"><i class="ti ti-info-circle-filled"></i></a>
                                         <a href="{{Route('formEdit', ['id' => $item->id_student])}}" class=" btn btn-success"><i class="ti ti-edit"></i></a>
                                         <a data-role="{{auth()->user()->role}}" data-id="{{ $item->id_student }}" onclick="confirmDeleteSiswa(event)" type="button" class="btn btn-danger"><i class="ti ti-trash-x-filled"></i></a>
+                                        <a href="{{Route('downloadAction', ['id' => $item->id_student])}}" class=" btn btn-primary"><i class="ti ti-download"></i></a>
                                     </div>
                                 </td>
                             </tr>

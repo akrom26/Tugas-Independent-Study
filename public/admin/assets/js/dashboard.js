@@ -6,7 +6,7 @@ $(function () {
   // =====================================
   var chart = {
     series: [
-      { name: "Earnings this month:", data: [355, 390, 300, 350, 390, 180, 355, 390] },
+      { name: "Earnings this month:", data: [355, 390, 300, 350, 390, 180, 355, 390,] },
       { name: "Expense this month:", data: [280, 250, 325, 215, 250, 310, 280, 250] },
     ],
 
@@ -57,7 +57,7 @@ $(function () {
 
     xaxis: {
       type: "category",
-      categories: ["16/08", "17/08", "18/08", "19/08", "20/08", "21/08", "22/08", "23/08"],
+      categories: ["16/08", "17/08", "18/08", "19/08", "20/08", "21/08", "22/08", "23/08", "16/08", "17/08", "18/08", "19/08", "20/08", "21/08", "22/08", "23/08"],
       labels: {
         style: { cssClass: "grey--text lighten-2--text fill-color" },
       },
@@ -157,6 +157,222 @@ $(function () {
   };
 
   var chart = new ApexCharts(document.querySelector("#breakup"), breakup);
+  chart.render();
+
+  // =====================================
+  // Breakup
+  // =====================================
+  var breakup = {
+    color: "#adb5bd",
+    series: [38, 40, 25],
+    labels: ["2022", "2021", "2020"],
+    chart: {
+      width: 180,
+      type: "donut",
+      fontFamily: "Plus Jakarta Sans', sans-serif",
+      foreColor: "#adb0bb",
+    },
+    plotOptions: {
+      pie: {
+        startAngle: 0,
+        endAngle: 360,
+        donut: {
+          size: '75%',
+        },
+      },
+    },
+    stroke: {
+      show: false,
+    },
+
+    dataLabels: {
+      enabled: false,
+    },
+
+    legend: {
+      show: false,
+    },
+    colors: ["#5D87FF", "#ecf2ff", "#F9F9FD"],
+
+    responsive: [
+      {
+        breakpoint: 991,
+        options: {
+          chart: {
+            width: 150,
+          },
+        },
+      },
+    ],
+    tooltip: {
+      theme: "dark",
+      fillSeriesColor: false,
+    },
+  };
+
+  var chart = new ApexCharts(document.querySelector("#breakup1"), breakup);
+  chart.render();
+
+  // =====================================
+  // Breakup
+  // =====================================
+  var breakup = {
+    color: "#adb5bd",
+    series: [38, 40, 25],
+    labels: ["2022", "2021", "2020"],
+    chart: {
+      width: 180,
+      type: "donut",
+      fontFamily: "Plus Jakarta Sans', sans-serif",
+      foreColor: "#adb0bb",
+    },
+    plotOptions: {
+      pie: {
+        startAngle: 0,
+        endAngle: 360,
+        donut: {
+          size: '75%',
+        },
+      },
+    },
+    stroke: {
+      show: false,
+    },
+
+    dataLabels: {
+      enabled: false,
+    },
+
+    legend: {
+      show: false,
+    },
+    colors: ["#5D87FF", "#ecf2ff", "#F9F9FD"],
+
+    responsive: [
+      {
+        breakpoint: 991,
+        options: {
+          chart: {
+            width: 150,
+          },
+        },
+      },
+    ],
+    tooltip: {
+      theme: "dark",
+      fillSeriesColor: false,
+    },
+  };
+
+  var chart = new ApexCharts(document.querySelector("#breakup2"), breakup);
+  chart.render();
+
+  // =====================================
+  // Breakup
+  // =====================================
+  var breakup = {
+    color: "#adb5bd",
+    series: [38, 40, 25],
+    labels: ["2022", "2021", "2020"],
+    chart: {
+      width: 180,
+      type: "donut",
+      fontFamily: "Plus Jakarta Sans', sans-serif",
+      foreColor: "#adb0bb",
+    },
+    plotOptions: {
+      pie: {
+        startAngle: 0,
+        endAngle: 360,
+        donut: {
+          size: '75%',
+        },
+      },
+    },
+    stroke: {
+      show: false,
+    },
+
+    dataLabels: {
+      enabled: false,
+    },
+
+    legend: {
+      show: false,
+    },
+    colors: ["#5D87FF", "#ecf2ff", "#F9F9FD"],
+
+    responsive: [
+      {
+        breakpoint: 991,
+        options: {
+          chart: {
+            width: 150,
+          },
+        },
+      },
+    ],
+    tooltip: {
+      theme: "dark",
+      fillSeriesColor: false,
+    },
+  };
+
+  var chart = new ApexCharts(document.querySelector("#breakup3"), breakup);
+  chart.render();
+
+  // =====================================
+  // Breakup
+  // =====================================
+  var breakup = {
+    color: "#adb5bd",
+    series: [38, 40, 25, 38, 40, 25],
+    labels: ["2022", "2021", "2020","2022", "2021", "2020",],
+    chart: {
+      width: 180,
+      type: "donut",
+      fontFamily: "Plus Jakarta Sans', sans-serif",
+      foreColor: "#adb0bb",
+    },
+    plotOptions: {
+      pie: {
+        startAngle: 0,
+        endAngle: 360,
+        donut: {
+          size: '75%',
+        },
+      },
+    },
+    stroke: {
+      show: false,
+    },
+
+    dataLabels: {
+      enabled: false,
+    },
+
+    legend: {
+      show: false,
+    },
+    // colors: ["#5D87FF", "#ecf2ff", "#F9F9FD"],
+
+    responsive: [
+      {
+        breakpoint: 991,
+        options: {
+          chart: {
+            width: 150,
+          },
+        },
+      },
+    ],
+    tooltip: {
+      theme: "dark",
+      fillSeriesColor: false,
+    },
+  };
+
+  var chart = new ApexCharts(document.querySelector("#breakup4"), breakup);
   chart.render();
 
 

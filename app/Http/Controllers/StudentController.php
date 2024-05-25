@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
+use DateTime;
 
 class StudentController extends Controller
 {
@@ -371,8 +372,31 @@ class StudentController extends Controller
             'school' => $originSchool->toArray()
         ];
         $data = array_merge($data, $dataSchool);
-        
+
+        // data address
+        $address = [
+            'address' => [
+                'province' => $student->province->name,
+                'city' => $student->city->name,
+                'district' => $student->district->name,
+                'village' => $student->village->name
+            ]
+        ];
+        $data = array_merge($data, $address);
+        $path = storage_path('app/' . $student['photo']);
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $dataImage = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($dataImage);
+
+        $dataImage = [
+            'image' => $base64
+        ];
+        $data = array_merge($data, $dataImage);
+
         $pdf = PDF::loadView('template.pdf', $data);
-        return $pdf->download('invoice.pdf');
+        $dateNow = new DateTime();
+        $dateString = $dateNow->format('Y-m-d H:i:s');
+        $filename = "Data :" . $student->name . "-" . $student->nisn . "-" . $dateString . ".pdf";
+        return $pdf->download($filename);
     }
 }

@@ -301,39 +301,39 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- data sekolah sebelumnya -->
-                <div class="card">
-                    <div class="card-header">
-                        Data Sekolah Sebelumnya
+                    <!-- data sekolah sebelumnya -->
+                    <div class="card">
+                        <div class="card-header">
+                            Data Sekolah Sebelumnya
+                        </div>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#originSchool">
+                                Data sekolah sudah pernah dimasukan
+                            </button>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Nama Sekolah *</label>
+                                <input name="id_origin_school" hidden>
+                                <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required id="name_origin_school">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Tipe Sekolah *</label>
+                                <select class="form-control" name="type_origin_school" required id="type_origin_school">
+                                    <option>==Pilih Salah Satu==</option>
+                                    <option value="Mts/Madrasah Tsanawiyah">Mts/Madrasah Tsanawiyah</option>
+                                    <option value="PKBM">PKBM</option>
+                                    <option value="Pondok Pesantren">Pondok Pesantren</option>
+                                    <option value="SMP Negeri/Swasta">SMP Negeri/Swasta</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">NPSN *</label>
+                                <input type="number" class="form-control" placeholder="NPSN" name="npsn_origin_school" required id="npsn_origin_school">
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#originSchool">
-                            Data sekolah sudah pernah dimasukan
-                        </button>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nama Sekolah *</label>
-                            <input name="id_origin_school" hidden>
-                            <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required id="name_origin_school">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Tipe Sekolah *</label>
-                            <select class="form-control" name="type_origin_school" required id="type_origin_school">
-                                <option>==Pilih Salah Satu==</option>
-                                <option value="Mts/Madrasah Tsanawiyah">Mts/Madrasah Tsanawiyah</option>
-                                <option value="PKBM">PKBM</option>
-                                <option value="Pondok Pesantren">Pondok Pesantren</option>
-                                <option value="SMP Negeri/Swasta">SMP Negeri/Swasta</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">NPSN *</label>
-                            <input type="number" class="form-control" placeholder="NPSN" name="npsn_origin_school" required id="npsn_origin_school">
-                        </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-success" id="buttonAddSiswa">Tambah data siswa</button>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <button type="button" class="btn btn-success" id="buttonAddSiswa">Tambah data siswa</button>
                 </div>
             </form>
         </div>

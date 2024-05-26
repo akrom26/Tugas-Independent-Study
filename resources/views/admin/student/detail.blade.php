@@ -63,26 +63,30 @@
                                                 <th>Scan KK</th>
                                                 <td>:</td>
                                                 <td>
+                                                    @if ($data->identity)
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         Chek scan KK
                                                     </button>
+                                                    @else
+                                                    <p>Data KK tidak tersedia</p>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>Alamat</th>
                                                 <td>:</td>
                                                 <td>
-                                                    <b>Desa : </b> {{$data->village->name}}
+                                                    <b>Desa : </b> {{ $data->village->name ?? '-' }}
                                                     <br>
-                                                    <b>Kecamatan : </b> {{$data->district->name}}
+                                                    <b>Kecamatan : </b> {{ $data->district->name ?? '-' }}
                                                     <br>
-                                                    <b>Kabupaten / Kota : </b> {{$data->city->name}}
+                                                    <b>Kabupaten / Kota : </b> {{$data->city->name ?? '-'}}
                                                     <br>
-                                                    <b>Provinsi : </b> {{$data->province->name}}
+                                                    <b>Provinsi : </b> {{$data->province->name ?? '-'}}
                                                     <br>
                                                     <b>Alamat : </b> {{$data->address}}
                                                     <br>
-                                                    <b>Kode pos : </b> {{$data->pos_code}}
+                                                    <b>Kode pos : </b> {{$data->pos_code ?? '-'}}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -94,68 +98,7 @@
                                 <div class="card-header">
                                     Data Orang Tua
                                 </div>
-                                <div class="card-body">
-                                    <table class="table table-responsive table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <th>Nama</th>
-                                                <td>:</td>
-                                                <td>{{$data->name}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Jenis Kelamin</th>
-                                                <td>:</td>
-                                                <td>{{$data->gender}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>NIK</th>
-                                                <td>:</td>
-                                                <td>{{$data->nik}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>NIS</th>
-                                                <td>:</td>
-                                                <td>{{$data->nis}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>NISN</th>
-                                                <td>:</td>
-                                                <td>{{$data->nisn}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Tempat / Tanggal lahir</th>
-                                                <td>:</td>
-                                                <td>{{$data->place_birth}} / {{ date('d-m-Y', strtotime($data->date_birth)) }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Scan KK</th>
-                                                <td>:</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        Chek scan KK
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Alamat</th>
-                                                <td>:</td>
-                                                <td>
-                                                    <b>Desa : </b> {{$data->village->name}}
-                                                    <br>
-                                                    <b>Kecamatan : </b> {{$data->district->name}}
-                                                    <br>
-                                                    <b>Kabupaten / Kota : </b> {{$data->city->name}}
-                                                    <br>
-                                                    <b>Provinsi : </b> {{$data->province->name}}
-                                                    <br>
-                                                    <b>Alamat : </b> {{$data->address}}
-                                                    <br>
-                                                    <b>Kode pos : </b> {{$data->pos_code}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,16 @@
                 Manajemen Siswa
             </div>
             <div class="card-body">
-                <a type="button" href="{{Route('formAdd')}}" class="mb-3 btn btn-primary">Tambah Siswa</a>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a type="button" href="{{Route('formAdd')}}" class="mb-3 btn btn-primary">Tambah Siswa</a>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBulkStudent">
+                            Tambah sekaligus
+                        </button>
+                    </div>
+                </div>
                 <form action="" method="GET" class="mb-3">
                     @csrf
                     <div class="row">
@@ -39,7 +48,7 @@
                                 <td>{{ $item->nis }}</td>
                                 @if($item->schoolClass == null)
                                 <td>
-                                <span class="badge rounded-pill text-bg-danger" style="background-color: #EE2737 !important;">Belum memiliki kelas</span>
+                                    <span class="badge rounded-pill text-bg-danger" style="background-color: #EE2737 !important;">Belum memiliki kelas</span>
                                 </td>
                                 @else
                                 <td>{{$item->schoolClass->classroom}} - {{$item->schoolClass->major}} - {{$item->schoolClass->sub_class}} ({{$item->schoolClass->program}})</td>
@@ -61,6 +70,29 @@
                 <div class="d-flex justify-content-end">
                     {{ $data->appends(['search' => request('search'), 'jenjang' => request('jenjang')])->links('pagination::bootstrap-4') }}
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addBulkStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addStudentCsv" method="POST" action="{{Route('bulkAddStudentAction')}}" enctype="multipart/form-data">
+                    @csrf
+                    <input name="role" value="admin" hidden>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">File .csv*</label>
+                        <input type="file" class="form-control" name="file">
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-success" id="buttonAddStudentCsv">Upload siswa</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -92,5 +124,24 @@
             }
         });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('buttonAddStudentCsv').addEventListener('click', function() {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah anda yakin akan menyimpan data?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('addStudentCsv').submit();
+                }
+            });
+        });
+    });
 </script>
 @endsection

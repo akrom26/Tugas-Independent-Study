@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use DateTime;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -398,5 +400,42 @@ class StudentController extends Controller
         $dateString = $dateNow->format('Y-m-d H:i:s');
         $filename = "Data :" . $student->name . "-" . $student->nisn . "-" . $dateString . ".pdf";
         return $pdf->download($filename);
+    }
+
+    public function bulkAddStudentAction(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt'
+        ]);
+
+        $file = $request->file('file');
+        $data = array_map('str_getcsv', file($file));
+        $header = $data[0];
+        unset($data[0]);
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($data as $row) {
+                $student = new Student();
+                $student->name = $row[0];
+                $student->nik = $row[1];
+                $student->nis = $row[2];
+                $student->nisn = $row[3];
+                $student->place_birth = $row[4];
+                $student->date_birth = Carbon::parse($row[5]);
+                $student->gender = $row[6];
+                $student->address = $row[7];
+                $student->save();
+            }
+
+            DB::commit();
+            return redirect()->back()->with('flash', 'successAdd');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            // Log the exception if needed
+            LogHelper::Log('Failed to import students: ' . $th->getMessage());
+            return redirect()->back()->with('flash', 'errorAdd');
+        }
     }
 }

@@ -85,7 +85,7 @@
                     <hr>
                     <ul id="sidebarnav">
                         <li class="sidebar-item ">
-                            <a class="sidebar-link {{ request()->is('administrator/*')  ? 'active' : '' }}" href="{{Route('indexAdmin')}}" aria-expanded="false">
+                            <a class="sidebar-link {{ request()->is('administrator')  ? 'active' : '' }}" href="{{Route('indexAdmin')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-dashboard"></i>
                                 </span>

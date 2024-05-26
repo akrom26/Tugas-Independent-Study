@@ -58,6 +58,7 @@ Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function (
     Route::get('/student-not-have-class/search', [StudentController::class, 'studentNotHaveClass'])->name('studentNotHaveClass');
     Route::get('/student/download/{id}', [StudentController::class, 'downloadAction'])->name('downloadAction');
     Route::post('/student/bulk-add-student-action', [StudentController::class, 'bulkAddStudentAction'])->name('bulkAddStudentAction');
+    Route::get('/student/download-template-action', [StudentController::class, 'downloadTemplateAction'])->name('downloadTemplateAction');
     
     // manajemen kelas
     Route::get('/schoolclass', [SchoolClassController::class, 'index'])->name('indexSchoolClass');

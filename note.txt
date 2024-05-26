@@ -1,0 +1,6 @@
+Yang harus diperbaiki : 
+
+1. Update user harusnya ketika saat setelah upload bulk dan mau update sekarang masih error karena ada field yang belum terisi
+2. Saat update user buat function untuk menghitung kalkulasi completed field
+3. Buat validasi ketika data belum lengkap tidak bisa di download (done)
+4. Order data siswa pada kelengkapan data terkecil(done)

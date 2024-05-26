@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use DateTime;
+use Faker\Core\File;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -19,10 +20,12 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->search;
-        if ($request->search) {
-            $data = Student::where('name', 'LIKE', "%{$searchTerm}%")->paginate(8);
+        if ($searchTerm) {
+            $data = Student::where('name', 'LIKE', "%{$searchTerm}%")
+                ->orderBy('completed_field', 'asc')
+                ->paginate(8);
         } else {
-            $data = Student::paginate(8);
+            $data = Student::orderBy('completed_field', 'asc')->paginate(8);
         }
 
 
@@ -414,7 +417,7 @@ class StudentController extends Controller
         unset($data[0]);
 
         DB::beginTransaction();
-
+        $totalField = env('TOTAL_FIELD_STUDENT');
         try {
             foreach ($data as $row) {
                 $student = new Student();
@@ -426,6 +429,7 @@ class StudentController extends Controller
                 $student->date_birth = Carbon::parse($row[5]);
                 $student->gender = $row[6];
                 $student->address = $row[7];
+                $student->completed_field = (9 / $totalField) * 100;
                 $student->save();
             }
 
@@ -437,5 +441,13 @@ class StudentController extends Controller
             LogHelper::Log('Failed to import students: ' . $th->getMessage());
             return redirect()->back()->with('flash', 'errorAdd');
         }
+    }
+
+    public function downloadTemplateAction()
+    {
+        $filename = "template-data-siswa.csv";
+        $filePath = public_path('admin/' . $filename);
+
+        return response()->download($filePath);
     }
 }

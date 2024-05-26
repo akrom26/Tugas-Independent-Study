@@ -9,11 +9,11 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <a type="button" href="{{Route('formAdd')}}" class="mb-3 btn btn-primary">Tambah Siswa</a>
                     </div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBulkStudent">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addBulkStudent">
                             Tambah sekaligus
                         </button>
                     </div>
@@ -37,6 +37,7 @@
                                 <th scope="col">Nama Siswa</th>
                                 <th scope="col">NIS</th>
                                 <th scope="col">Kelas</th>
+                                <th scope="col">Kelengkapan data</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -54,11 +55,18 @@
                                 <td>{{$item->schoolClass->classroom}} - {{$item->schoolClass->major}} - {{$item->schoolClass->sub_class}} ({{$item->schoolClass->program}})</td>
                                 @endif
                                 <td>
+                                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{ $item->completed_field }}" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ $item->completed_field }}%">{{ $item->completed_field }}%</div>
+                                    </div>
+                                </td>
+                                <td>
                                     <div class="btn-group" role="group">
                                         <a href="{{Route('detailStudent', ['id' => $item->id_student])}}" class=" btn btn-warning"><i class="ti ti-info-circle-filled"></i></a>
                                         <a href="{{Route('formEdit', ['id' => $item->id_student])}}" class=" btn btn-success"><i class="ti ti-edit"></i></a>
                                         <a data-role="{{auth()->user()->role}}" data-id="{{ $item->id_student }}" onclick="confirmDeleteSiswa(event)" type="button" class="btn btn-danger"><i class="ti ti-trash-x-filled"></i></a>
-                                        <a href="{{Route('downloadAction', ['id' => $item->id_student])}}" class=" btn btn-primary"><i class="ti ti-download"></i></a>
+                                        <a href="{{ route('downloadAction', ['id' => $item->id_student]) }}" class="btn btn-primary {{ $item->completed_field < 100 ? 'disabled' : '' }}" {{ $item->completed_field < 100 ? 'disabled' : '' }}>
+                                            <i class="ti ti-download"></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -78,10 +86,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Upload file data siswa</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                    Silahkan download template di bawah ini. Dan sesuaikan dengan data siswa.
+                </div>
+                <a href="{{Route('downloadTemplateAction')}}" class="btn btn-success">Download template</a>
+                <hr>
                 <form id="addStudentCsv" method="POST" action="{{Route('bulkAddStudentAction')}}" enctype="multipart/form-data">
                     @csrf
                     <input name="role" value="admin" hidden>

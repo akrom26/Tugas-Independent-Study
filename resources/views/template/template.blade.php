@@ -57,8 +57,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="./index.html" class="text-nowrap logo-img" style="text-align: center;">
-                        <!-- <img style="text-align: center;" src="{{asset('admin/assets/images/logos/logo.png')}}" width="130" alt="" /> -->
-                        SIAKAD
+                        <img style="text-align: center;" src="{{asset('admin/assets/images/logos/logo.png')}}" width="130" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -77,6 +76,10 @@
                         <div class="col-md-12" style="text-align: center;">
                             {{auth()->user()->name}}<br>
                             Role : {{auth()->user()->role}}
+                            <br>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="ti ti-settings"></i>
+                            </button>
                         </div>
                     </div>
                     <hr>
@@ -185,6 +188,44 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form update profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formUdpateUser" method="POST" action="{{Route('updateProfileAction')}}">
+                        @csrf
+                        <input name="role" value="admin" hidden>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nama *</label>
+                            <input type="text" class="form-control" placeholder="Nama" name="name" required value="{{auth()->user()->name}}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Username *</label>
+                            <input type="text" class="form-control" placeholder="Username" name="username" required value="{{auth()->user()->username}}">
+                        </div>
+                        <hr>
+                        <small class="text-danger">Kosongi apabila tidak mengubah password</small>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Password *</label>
+                            <input type="password" class="form-control" placeholder="Password" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Re-Password *</label>
+                            <input type="password" class="form-control" placeholder="Konfirmasi password" name="re_password" required>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-success" id="buttonUpdateProfile">Update data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     // untuk get data error atau success
@@ -301,6 +342,25 @@
             icon: 'error'
         });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('buttonUpdateProfile').addEventListener('click', function() {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah anda yakin akan menyimpan data?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('formUdpateUser').submit();
+                }
+            });
+        });
+    });
 </script>
 
 <!-- <script>

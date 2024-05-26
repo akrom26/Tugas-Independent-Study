@@ -36,6 +36,7 @@
                     <div class="mb-3">
                         <button type="button" class="btn btn-success" id="buttonAddUser">Tambah data user</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>

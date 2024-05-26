@@ -37,6 +37,7 @@ Route::get('villages', [AreaController::class, 'villages'])->name('villages');
 // role admin
 Route::group(['prefix' => '/administrator', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('indexAdmin');
+    Route::post('/update-profile-action', [AdminController::class, 'updateProfileAction'])->name('updateProfileAction');
 
     // route untuk melakukan search orang tua
     Route::get('/parent/search', [ParentController::class, 'searchParent'])->name('searchParent');

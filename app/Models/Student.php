@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Schema;
 use Ramsey\Uuid\Rfc4122\UuidV4;
 
 class Student extends Model
@@ -57,5 +58,20 @@ class Student extends Model
     public function province()
     {
         return $this->belongsTo(IndonesiaProvince::class, 'id_province', 'id');
+    }
+
+    public static function countNullColumns($id)
+    {
+        $columns = Schema::getColumnListing('students');
+        $student = self::find($id);
+
+        $nullCount = 0;
+        foreach ($columns as $column) {
+            if (is_null($student->$column)) {
+                $nullCount++;
+            }
+        }
+
+        return $nullCount;
     }
 }

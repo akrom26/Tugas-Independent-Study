@@ -316,6 +316,13 @@ class StudentController extends Controller
 
             $message = "Sukses update data siswa dengan nama: " . $request->name . '-> ' . auth()->user()->username;
             LogHelper::Log($message);
+
+            // calculate percentage completed data
+            $totalColumns = env('TOTAL_FIELD_STUDENT');
+            $countNullColumns = Student::countNullColumns($student->id_student);
+            $percentageCompleteData = ($countNullColumns / $totalColumns) * 100;
+
+            Student::where('id_student', $student->id_student)->update(['completed_field' => $percentageCompleteData]);
             return redirect()->back()->with(['flash' => 'successAdd']);
         } catch (\Throwable $th) {
             DB::rollBack();

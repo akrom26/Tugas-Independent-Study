@@ -168,22 +168,26 @@ class StudentController extends Controller
             }
 
             // checking existing parent data
-            if (($student->studentParent->father_nik != $request->father_nik) || ($student->studentParent->mother_nik != $request->mother_nik)) {
-                $parent = StudentParent::where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
-                if ($parent != null) {
-                    $message = "Gagal tambah data orang tua siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
-                    LogHelper::Log($message);
-                    return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
+            if ($student->studentParent != null) {
+                if (($student->studentParent->father_nik != $request->father_nik) || ($student->studentParent->mother_nik != $request->mother_nik)) {
+                    $parent = StudentParent::where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
+                    if ($parent != null) {
+                        $message = "Gagal tambah data orang tua siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                        LogHelper::Log($message);
+                        return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
+                    }
                 }
             }
 
             // checking existing origin school
-            $originSchool = OriginSchool::where('npsn', $request->npsn_origin_school)->first();
-            if ($request->npsn_origin_school != $student->originSchool->npsn) {
-                if ($originSchool != null) {
-                    $message = "Gagal tambah data sekolah telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
-                    LogHelper::Log($message);
-                    return redirect()->back()->with(['flash' => 'errorAddExistingOriginSchool']);
+            if ($student->originSchool != null) {
+                $originSchool = OriginSchool::where('npsn', $request->npsn_origin_school)->first();
+                if ($request->npsn_origin_school != $student->originSchool->npsn) {
+                    if ($originSchool != null) {
+                        $message = "Gagal tambah data sekolah telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                        LogHelper::Log($message);
+                        return redirect()->back()->with(['flash' => 'errorAddExistingOriginSchool']);
+                    }
                 }
             }
 

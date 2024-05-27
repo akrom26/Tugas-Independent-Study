@@ -241,22 +241,22 @@
                             </button>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nama Sekolah *</label>
-                                <input name="id_origin_school" hidden value="{{$data->originSchool->id_origin_school}}">
-                                <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required id="name_origin_school" value="{{$data->originSchool->name}}">
+                                <input name="id_origin_school" hidden value="{{$data->originSchool->id_origin_school ?? ''}}">
+                                <input type="text" class="form-control" placeholder="Nama sekolah" name="name_origin_school" required id="name_origin_school" value="{{$data->originSchool->name ?? ''}}">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Tipe Sekolah *</label>
                                 <select class="form-control" name="type_origin_school" required id="type_origin_school">
                                     <option>==Pilih Salah Satu==</option>
-                                    <option value="Mts/Madrasah Tsanawiyah" @if($data->originSchool->type == 'Mts/Madrasah Tsanawiyah') selected @endif>Mts/Madrasah Tsanawiyah</option>
-                                    <option value="PKBM" @if($data->originSchool->type == 'PKBM') selected @endif>PKBM</option>
-                                    <option value="Pondok Pesantren" @if($data->originSchool->type == 'Pondok Pesantren') selected @endif>Pondok Pesantren</option>
-                                    <option value="SMP Negeri/Swasta" @if($data->originSchool->type == 'SMP Negeri/Swasta') selected @endif>SMP Negeri/Swasta</option>
+                                    <option value="Mts/Madrasah Tsanawiyah" @if($data->originSchool != null && $data->originSchool->type == 'Mts/Madrasah Tsanawiyah') selected @endif>Mts/Madrasah Tsanawiyah</option>
+                                    <option value="PKBM" @if($data->originSchool != null && $data->originSchool->type == 'PKBM') selected @endif>PKBM</option>
+                                    <option value="Pondok Pesantren" @if($data->originSchool != null && $data->originSchool->type == 'Pondok Pesantren') selected @endif>Pondok Pesantren</option>
+                                    <option value="SMP Negeri/Swasta" @if($data->originSchool != null && $data->originSchool->type == 'SMP Negeri/Swasta') selected @endif>SMP Negeri/Swasta</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">NPSN *</label>
-                                <input type="number" class="form-control" placeholder="NPSN" name="npsn_origin_school" required id="npsn_origin_school" value="{{$data->originSchool->npsn}}">
+                                <input type="number" class="form-control" placeholder="NPSN" name="npsn_origin_school" required id="npsn_origin_school" value="{{$data->originSchool->npsn ?? ''}}">
                             </div>
                         </div>
                     </div>

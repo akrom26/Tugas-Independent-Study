@@ -62,7 +62,9 @@
                                         @endphp
                                         <select class="form-control" name="id_province" id="province" required>
                                             <option>==Pilih Salah Satu==</option>
+                                            @if ($data->id_province != null)
                                             <option value="{{$data->id_province}}" selected>{{$data->province->name}}</option>
+                                            @endif
                                             @foreach ($provinces as $item)
                                             <option value="{{ $item->id ?? '' }}">{{ $item->name ?? '' }}</option>
                                             @endforeach
@@ -71,21 +73,27 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Kabupaten/Kota *</label>
                                         <select class="form-control" name="id_city" id="city" required>
+                                            @if ($data->id_city != null)
                                             <option value="{{$data->id_city}}" selected>{{$data->city->name}}</option>
+                                            @endif
                                             <option>==Pilih Salah Satu==</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Kecamatan *</label>
                                         <select class="form-control" name="id_district" id="district" required>
+                                            @if ($data->id_district != null)
                                             <option value="{{$data->id_district}}" selected>{{$data->district->name}}</option>
+                                            @endif
                                             <option>==Pilih Salah Satu==</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Desa *</label>
                                         <select class="form-control" name="id_village" id="village" required>
+                                            @if ($data->id_village != null)
                                             <option value="{{$data->id_village}}" selected>{{$data->village->name}}</option>
+                                            @endif
                                             <option>==Pilih Salah Satu==</option>
                                         </select>
                                     </div>

@@ -21,7 +21,7 @@ class StudentController extends Controller
     {
         $searchTerm = $request->search;
         if ($searchTerm) {
-            $data = Student::where('name', 'LIKE', "%{$searchTerm}%")
+            $data = Student::where('nisn', 'LIKE', "%{$searchTerm}%")
                 ->orderBy('completed_field', 'asc')
                 ->paginate(8);
         } else {
@@ -197,12 +197,24 @@ class StudentController extends Controller
             // 2. Menambah data dari fitur existing
 
             // 1. Update data yang sudah ada
-            if ($request->id_origin_school == $student->originSchool->id_origin_school) {
+            if ($student->originSchool == null) {
+                $originSchool = 0;
+            } else {
+                $originSchool = $student->originSchool->id_origin_school;
+            }
+            if ($request->id_origin_school == $originSchool || $request->id_origin_school == null) {
                 $existingOriginData = OriginSchool::where('id_origin_school', '!=', $request->id_origin_school)->where('npsn', $request->npsn)->first();
                 if ($existingOriginData) {
                     $message = "Gagal tambah data sekolah telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
                     LogHelper::Log($message);
                     return redirect()->back()->with(['flash' => 'errorAddExistingOriginSchool']);
+                } else if ($request->id_origin_school == null) {
+                    $originSchool = new OriginSchool();
+                    $originSchool->name = $request->name_origin_school;
+                    $originSchool->type = $request->type_origin_school;
+                    $originSchool->npsn = $request->npsn_origin_school;
+                    $originSchool->save();
+                    $id_origin_school = $originSchool->id_origin_school;
                 } else {
                     $data = [
                         'name' => $request->name_origin_school,
@@ -218,23 +230,20 @@ class StudentController extends Controller
             }
 
             // logic untuk update data orang tua
-            if (($request->id_parent != $student->studentParent->id_parent) && ($request->id_parent != null)) {
-                // cek dulu apakah request id parent ada dan sudah terdaftar di database
-                $existingParent = StudentParent::where('id_parent', $request->id_parent)->first();
-                if ($existingParent) {
-                    $data = [
-                        'id_parent' => $request->id_parent
-                    ];
+            if ($student->studentParent == null) {
+                $studentParent = 0;
+            } else {
+                $studentParent = $student->studentParent->id_parent;
+            }
 
-                    Student::where('id_student', $student->id_student)->update($data);
-                    $id_parent = $request->id_parent;
-                } else {
-                    $parent = StudentParent::where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
-                    if ($parent != null) {
-                        $message = "Gagal tambah data orang tua siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
-                        LogHelper::Log($message);
-                        return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
-                    } else {
+            if ($request->id_parent == $studentParent || $request->id_parent == null) {
+                // cek dulu apakah request id parent ada dan sudah terdaftar di database
+                $existingParent = StudentParent::where('id_parent', '!=', $request->id_parent)->where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
+                if ($existingParent) {
+                    $message = "Gagal tambah data orang tua siswa telah terdaftar: " . $request->name . '-> ' . auth()->user()->username;
+                    LogHelper::Log($message);
+                    return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
+                } else if ($request->id_parent == null) {
                         $parent = new StudentParent();
                         $parent->father_name = $request->father_name;
                         $parent->father_nik = $request->father_nik;
@@ -254,10 +263,7 @@ class StudentController extends Controller
                         $parent->mother_phone = $request->mother_phone;
                         $parent->save();
                         $id_parent = $parent->id_parent;
-                    }
-                }
-            } else {
-                if ($request->id_parent == null) {
+                } else {
                     $data = [
                         'father_name' => $request->father_name,
                         'father_nik' => $request->father_nik,
@@ -279,6 +285,8 @@ class StudentController extends Controller
                     StudentParent::where('id_parent', $student->studentParent->id_parent)->update($data);
                     $id_parent = $student->studentParent->id_parent;
                 }
+            } else {
+                $id_parent = $request->id_parent;
             }
 
             $data = [
@@ -301,17 +309,11 @@ class StudentController extends Controller
             ];
 
             if ($request->photo != null) {
-                $dataPhoto = [
-                    'photo' => $request->$request->photo->store('public/pas_foto')
-                ];
-                array_merge($data, $dataPhoto);
+                $data['photo'] = $request->photo->store('public/pas_foto');
             }
 
             if ($request->identity != null) {
-                $dataIdentity = [
-                    'identity' => $request->$request->photo->store('public/pas_foto')
-                ];
-                array_merge($data, $dataIdentity);
+                $data['identity'] = $request->identity->store('public/identity');
             }
 
             Student::where('id_student', $student->id_student)->update($data);
@@ -323,11 +325,10 @@ class StudentController extends Controller
 
             // calculate percentage completed data
             $totalColumns = env('TOTAL_FIELD_STUDENT');
-            $countNullColumns = Student::countNullColumns($student->id_student);
-            $percentageCompleteData = ($countNullColumns / $totalColumns) * 100;
-
+            $countNotNullColumns = Student::countNotNullColumns($student->id_student);
+            $percentageCompleteData = ($countNotNullColumns / $totalColumns) * 100;
             Student::where('id_student', $student->id_student)->update(['completed_field' => $percentageCompleteData]);
-            return redirect()->back()->with(['flash' => 'successAdd']);
+            return redirect()->back()->with(['flash' => 'successUpdate']);
         } catch (\Throwable $th) {
             DB::rollBack();
 
@@ -438,7 +439,11 @@ class StudentController extends Controller
                 $student->nisn = $row[3];
                 $student->place_birth = $row[4];
                 $student->date_birth = Carbon::parse($row[5]);
-                $student->gender = $row[6];
+                if ($row[6] == 'Laki-laki' || $row[6] == 'Laki-Laki' || $row[6] == 'LAKI-LAKI') {
+                    $student->gender = 'L';
+                } else if ($row[6] == 'Perempuan' || $row[6] == 'perempuan' || $row[6] == 'PEREMPUAN') {
+                    $student->gender = 'P';
+                }
                 $student->address = $row[7];
                 $student->completed_field = (9 / $totalField) * 100;
                 $student->save();

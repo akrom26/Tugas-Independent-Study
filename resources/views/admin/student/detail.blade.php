@@ -98,7 +98,91 @@
                                 <div class="card-header">
                                     Data Orang Tua
                                 </div>
-                                
+                                <div class="card-body">
+                                    <table class="table table-responsive table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <th colspan="3" style="text-align: left;">Data Ayah</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->father_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>NIK</th>
+                                                <td>:</td>
+                                                <td>{{$data->father_nik}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nomor HP</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->father_phone}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tempat / Tanggal lahir</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->father_birth_place}} / {{ date('d-m-Y', strtotime($data->studentParent->father_birth_date)) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pendidikan</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->father_education}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pekerjaan</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->father_job}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Penghasilan</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->father_income}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3"><hr></th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3" style="text-align: left;">Data Ibu</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->mother_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>NIK</th>
+                                                <td>:</td>
+                                                <td>{{$data->mother_nik}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nomor HP</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->mother_phone}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tempat / Tanggal lahir</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->mother_birth_place}} / {{ date('d-m-Y', strtotime($data->studentParent->mother_birth_date)) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pendidikan</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->mother_education}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pekerjaan</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->mother_job}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Penghasilan</th>
+                                                <td>:</td>
+                                                <td>{{$data->studentParent->mother_income}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

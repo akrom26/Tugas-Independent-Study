@@ -17,105 +17,150 @@
                             Data siswa
                         </div>
                         <div class="card-body">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nama *</label>
-                                <input type="text" class="form-control" placeholder="Nama siswa" name="name" value="{{$data->name}}" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nama *</label>
+                                        <input type="text" class="form-control" placeholder="Nama siswa" name="name" value="{{$data->name}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">NIK *</label>
+                                        <input type="number" class="form-control" placeholder="NIK siswa" name="nik" value="{{$data->nik}}" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NIK *</label>
-                                <input type="number" class="form-control" placeholder="NIK siswa" name="nik" value="{{$data->nik}}" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">NIS *</label>
+                                        <input type="number" class="form-control" placeholder="NIS siswa" name="nis" value="{{$data->nis}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">NISN *</label>
+                                        <input type="number" class="form-control" placeholder="NISN siswa" name="nisn" value="{{$data->nisn}}" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NIS *</label>
-                                <input type="number" class="form-control" placeholder="NIS siswa" name="nis" value="{{$data->nis}}" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Tempat Lahir *</label>
+                                        <input type="text" class="form-control" placeholder="Tempat Lahir siswa" name="place_birth" value="{{$data->place_birth}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir *</label>
+                                        <input type="date" class="form-control" placeholder="Tanggal Lahir siswa" name="date_birth" value="{{$data->date_birth}}" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NISN *</label>
-                                <input type="number" class="form-control" placeholder="NISN siswa" name="nisn" value="{{$data->nisn}}" required>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Jenis Kelamin *</label>
+                                        <select class="form-control" name="gender" required>
+                                            <option>==Pilih Salah Satu==</option>
+                                            <option value="L" @if ($data->gender == 'L') selected @endif>Laki-Laki</option>
+                                            <option value="P" @if ($data->gender == 'P') selected @endif>Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir *</label>
-                                <input type="text" class="form-control" placeholder="Tempat Lahir siswa" name="place_birth" value="{{$data->place_birth}}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir *</label>
-                                <input type="date" class="form-control" placeholder="Tanggal Lahir siswa" name="date_birth" value="{{$data->date_birth}}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Jenis Kelamin *</label>
-                                <select class="form-control" name="gender" required>
-                                    <option>==Pilih Salah Satu==</option>
-                                    <option value="L" @if ($data->gender == 'L') selected @endif>Laki-Laki</option>
-                                    <option value="P" @if ($data->gender == 'P') selected @endif>Perempuan</option>
-                                </select>
-                            </div>
+
                             <div class="card">
                                 <div class="card-header">
                                     Alamat siswa
                                 </div>
                                 <div class="card-body">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Provinsi *</label>
-                                        @php
-                                        $provinces = new App\Http\Controllers\AreaController;
-                                        $provinces= $provinces->provinces();
-                                        @endphp
-                                        <select class="form-control" name="id_province" id="province" required>
-                                            <option>==Pilih Salah Satu==</option>
-                                            @if ($data->id_province != null)
-                                            <option value="{{$data->id_province}}" selected>{{$data->province->name}}</option>
-                                            @endif
-                                            @foreach ($provinces as $item)
-                                            <option value="{{ $item->id ?? '' }}">{{ $item->name ?? '' }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Provinsi *</label>
+                                                @php
+                                                $provinces = new App\Http\Controllers\AreaController;
+                                                $provinces= $provinces->provinces();
+                                                @endphp
+                                                <select class="form-control" name="id_province" id="province" required>
+                                                    <option>==Pilih Salah Satu==</option>
+                                                    @if ($data->id_province != null)
+                                                    <option value="{{$data->id_province}}" selected>{{$data->province->name}}</option>
+                                                    @endif
+                                                    @foreach ($provinces as $item)
+                                                    <option value="{{ $item->id ?? '' }}">{{ $item->name ?? '' }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Kabupaten/Kota *</label>
+                                                <select class="form-control" name="id_city" id="city" required>
+                                                    @if ($data->id_city != null)
+                                                    <option value="{{$data->id_city}}" selected>{{$data->city->name}}</option>
+                                                    @endif
+                                                    <option>==Pilih Salah Satu==</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Kabupaten/Kota *</label>
-                                        <select class="form-control" name="id_city" id="city" required>
-                                            @if ($data->id_city != null)
-                                            <option value="{{$data->id_city}}" selected>{{$data->city->name}}</option>
-                                            @endif
-                                            <option>==Pilih Salah Satu==</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Kecamatan *</label>
+                                                <select class="form-control" name="id_district" id="district" required>
+                                                    @if ($data->id_district != null)
+                                                    <option value="{{$data->id_district}}" selected>{{$data->district->name}}</option>
+                                                    @endif
+                                                    <option>==Pilih Salah Satu==</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Desa *</label>
+                                                <select class="form-control" name="id_village" id="village" required>
+                                                    @if ($data->id_village != null)
+                                                    <option value="{{$data->id_village}}" selected>{{$data->village->name}}</option>
+                                                    @endif
+                                                    <option>==Pilih Salah Satu==</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Kecamatan *</label>
-                                        <select class="form-control" name="id_district" id="district" required>
-                                            @if ($data->id_district != null)
-                                            <option value="{{$data->id_district}}" selected>{{$data->district->name}}</option>
-                                            @endif
-                                            <option>==Pilih Salah Satu==</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Desa *</label>
-                                        <select class="form-control" name="id_village" id="village" required>
-                                            @if ($data->id_village != null)
-                                            <option value="{{$data->id_village}}" selected>{{$data->village->name}}</option>
-                                            @endif
-                                            <option>==Pilih Salah Satu==</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Kode POS *</label>
-                                        <input type="number" class="form-control" placeholder="Kode Pos" name="pos_code" value="{{$data->pos_code}}" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Alamat *</label>
-                                        <textarea class="form-control" name="address" required>{{$data->address}}</textarea>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Kode POS *</label>
+                                                <input type="number" class="form-control" placeholder="Kode Pos" name="pos_code" value="{{$data->pos_code}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Alamat *</label>
+                                                <textarea class="form-control" name="address" required>{{$data->address}}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pas Foto</label>
-                                <small>Kosongi apabila tidak diubah</small>
-                                <input type="file" class="form-control" name="photo" accept="image/*">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Pas Foto</label>
+                                    <small>Kosongi apabila tidak diubah</small>
+                                    <input type="file" class="form-control" name="photo" accept="image/*">
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Scan Kartu Keluarga (.pdf)</label>
-                                <small>Kosongi apabila tidak diubah</small>
-                                <input type="file" class="form-control" name="identity" accept=".pdf">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Scan Kartu Keluarga (.pdf)</label>
+                                    <small>Kosongi apabila tidak diubah</small>
+                                    <input type="file" class="form-control" name="identity" accept=".pdf">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -131,102 +176,150 @@
                             </button>
                             <h4>Data Ayah</h4>
                             <hr>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nama Ayah *</label>
-                                <input type="text" class="form-control" name="id_parent" id="id_parent" hidden>
-                                <input type="text" class="form-control" placeholder="Nama ayah" name="father_name" required id="father_name" value="{{ $data->studentParent->father_name ?? '' }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nama Ayah *</label>
+                                        <input type="text" class="form-control" name="id_parent" id="id_parent" value="{{$data->id_parent}}" hidden>
+                                        <input type="text" class="form-control" placeholder="Nama ayah" name="father_name" required id="father_name" value="{{ $data->studentParent->father_name ?? '' }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">NIK Ayah *</label>
+                                        <input type="number" class="form-control" placeholder="NIK ayah" name="father_nik" required id="father_nik" value="{{ $data->studentParent->father_nik ?? '' }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NIK Ayah *</label>
-                                <input type="number" class="form-control" placeholder="NIK ayah" name="father_nik" required id="father_nik" value="{{ $data->studentParent->father_nik ?? '' }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
+                                        <input type="text" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth" value="{{ $data->studentParent->father_birth_place ?? '' }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
+                                        <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required id="father_date_birth" value="{{ $data->studentParent->father_birth_date ?? '' }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ayah *</label>
-                                <input type="text" class="form-control" placeholder="Tempat Lahir ayah" name="father_place_birth" required id="father_place_birth" value="{{ $data->studentParent->father_birth_place ?? '' }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Pendidikan Ayah *</label>
+                                        <select class="form-control" name="father_education" required id="father_education">
+                                            <option>==Pilih Salah Satu==</option>
+                                            <option value="SD" @if ($data->studentParent != null && $data->studentParent->father_education == 'SD') selected @endif>SD</option>
+                                            <option value="SMP" @if ($data->studentParent != null && $data->studentParent->father_education == 'SMP') selected @endif>SMP</option>
+                                            <option value="SMA" @if ($data->studentParent != null && $data->studentParent->father_education == 'SMA') selected @endif>SMA/SMK</option>
+                                            <option value="S1" @if ($data->studentParent != null && $data->studentParent->father_education == 'S1') selected @endif>S1</option>
+                                            <option value="S2" @if ($data->studentParent != null && $data->studentParent->father_education == 'S2') selected @endif>S2</option>
+                                            <option value="S3" @if ($data->studentParent != null && $data->studentParent->father_education == 'S3') selected @endif>S3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ayah *</label>
+                                        <input type="string" class="form-control" placeholder="Pekerjaan ayah" name="father_job" required id="father_job" value="{{ $data->studentParent->father_job ?? '' }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ayah *</label>
-                                <input type="date" class="form-control" placeholder="Tanggal Lahir ayah" name="father_date_birth" required id="father_date_birth" value="{{ $data->studentParent->father_birth_date ?? '' }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ayah *</label>
-                                <select class="form-control" name="father_education" required id="father_education">
-                                    <option>==Pilih Salah Satu==</option>
-                                    <option value="SD" @if ($data->studentParent != null && $data->studentParent->father_education == 'SD') selected @endif>SD</option>
-                                    <option value="SMP" @if ($data->studentParent != null && $data->studentParent->father_education == 'SMP') selected @endif>SMP</option>
-                                    <option value="SMA" @if ($data->studentParent != null && $data->studentParent->father_education == 'SMA') selected @endif>SMA/SMK</option>
-                                    <option value="S1" @if ($data->studentParent != null && $data->studentParent->father_education == 'S1') selected @endif>S1</option>
-                                    <option value="S2" @if ($data->studentParent != null && $data->studentParent->father_education == 'S2') selected @endif>S2</option>
-                                    <option value="S3" @if ($data->studentParent != null && $data->studentParent->father_education == 'S3') selected @endif>S3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ayah *</label>
-                                <input type="string" class="form-control" placeholder="Pekerjaan ayah" name="father_job" required id="father_job" value="{{ $data->studentParent->father_job ?? '' }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
-                                <select class="form-control" name="father_income" required id="father_income">
-                                    <option>==Pilih Salah Satu==</option>
-                                    <option value="Kurang dari Rp 500.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Kurang dari Rp 500.000') selected @endif>Kurang dari Rp 500.000</option>
-                                    <option value="Rp 500.000 - 1.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Rp 500.000 - 1.000.000') selected @endif>Rp 500.000 - 1.000.000</option>
-                                    <option value="Rp 1.000.000 - 2.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Rp 1.000.000 - 2.000.000') selected @endif>Rp 1.000.000 - 2.000.000</option>
-                                    <option value="Rp 3.000.000 - 5.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Rp 3.000.000 - 5.000.000') selected @endif>Rp 3.000.000 - 5.000.000</option>
-                                    <option value="Lebih dari Rp 5.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Lebih dari Rp 5.000.000') selected @endif>Lebih dari Rp 5.000.000</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
-                                <input type="number" class="form-control" placeholder="Nomor HP ayah" name="father_phone" required id="father_phone" value="{{ $data->studentParent->father_phone ?? '' }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Pendapatan Ayah *</label>
+                                        <select class="form-control" name="father_income" required id="father_income">
+                                            <option>==Pilih Salah Satu==</option>
+                                            <option value="Kurang dari Rp 500.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Kurang dari Rp 500.000') selected @endif>Kurang dari Rp 500.000</option>
+                                            <option value="Rp 500.000 - 1.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Rp 500.000 - 1.000.000') selected @endif>Rp 500.000 - 1.000.000</option>
+                                            <option value="Rp 1.000.000 - 2.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Rp 1.000.000 - 2.000.000') selected @endif>Rp 1.000.000 - 2.000.000</option>
+                                            <option value="Rp 3.000.000 - 5.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Rp 3.000.000 - 5.000.000') selected @endif>Rp 3.000.000 - 5.000.000</option>
+                                            <option value="Lebih dari Rp 5.000.000" @if($data->studentParent != null && $data->studentParent->father_income == 'Lebih dari Rp 5.000.000') selected @endif>Lebih dari Rp 5.000.000</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nomor HP Ayah *</label>
+                                        <input type="number" class="form-control" placeholder="Nomor HP ayah" name="father_phone" required id="father_phone" value="{{ $data->studentParent->father_phone ?? '' }}">
+                                    </div>
+                                </div>
                             </div>
                             <h4>Data Ibu</h4>
                             <hr>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nama Ibu *</label>
-                                <input type="text" class="form-control" placeholder="Nama ibu" name="mother_name" required id="mother_name" value="{{$data->studentParent->mother_name ?? ''}}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nama Ibu *</label>
+                                        <input type="text" class="form-control" placeholder="Nama ibu" name="mother_name" required id="mother_name" value="{{$data->studentParent->mother_name ?? ''}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">NIK Ibu *</label>
+                                        <input type="number" class="form-control" placeholder="NIK ibu" name="mother_nik" required id="mother_nik" value="{{$data->studentParent->mother_nik ?? ''}}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">NIK Ibu *</label>
-                                <input type="number" class="form-control" placeholder="NIK ibu" name="mother_nik" required id="mother_nik" value="{{$data->studentParent->mother_nik ?? ''}}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
+                                        <input type="text" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth" value="{{$data->studentParent->mother_birth_place ?? ''}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>
+                                        <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required id="mother_date_birth" value="{{$data->studentParent->mother_birth_date ?? ''}}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tempat Lahir Ibu *</label>
-                                <input type="text" class="form-control" placeholder="Tempat Lahir ibu" name="mother_place_birth" required id="mother_place_birth" value="{{$data->studentParent->mother_birth_place ?? ''}}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Pendidikan Ibu *</label>
+                                        <select class="form-control" name="mother_education" required id="mother_education">
+                                            <option>==Pilih Salah Satu==</option>
+                                            <option value="SD" @if ($data->studentParent != null && $data->studentParent->mother_education == 'SD') selected @endif>SD</option>
+                                            <option value="SMP" @if ($data->studentParent != null && $data->studentParent->mother_education == 'SMP') selected @endif>SMP</option>
+                                            <option value="SMA" @if ($data->studentParent != null && $data->studentParent->mother_education == 'SMA') selected @endif>SMA/SMK</option>
+                                            <option value="S1" @if ($data->studentParent != null && $data->studentParent->mother_education == 'S1') selected @endif>S1</option>
+                                            <option value="S2" @if ($data->studentParent != null && $data->studentParent->mother_education == 'S2') selected @endif>S2</option>
+                                            <option value="S3" @if ($data->studentParent != null && $data->studentParent->mother_education == 'S3') selected @endif>S3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ibu *</label>
+                                        <input type="string" class="form-control" placeholder="Pekerjaan ibu" name="mother_job" required id="mother_job" value="{{$data->studentParent->mother_job ?? ''}}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir Ibu *</label>
-                                <input type="date" class="form-control" placeholder="Tanggal Lahir ibu" name="mother_date_birth" required id="mother_date_birth" value="{{$data->studentParent->mother_birth_date ?? ''}}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendidikan Ibu *</label>
-                                <select class="form-control" name="mother_education" required id="mother_education">
-                                    <option>==Pilih Salah Satu==</option>
-                                    <option value="SD" @if ($data->studentParent != null && $data->studentParent->mother_education == 'SD') selected @endif>SD</option>
-                                    <option value="SMP" @if ($data->studentParent != null && $data->studentParent->mother_education == 'SMP') selected @endif>SMP</option>
-                                    <option value="SMA" @if ($data->studentParent != null && $data->studentParent->mother_education == 'SMA') selected @endif>SMA/SMK</option>
-                                    <option value="S1" @if ($data->studentParent != null && $data->studentParent->mother_education == 'S1') selected @endif>S1</option>
-                                    <option value="S2" @if ($data->studentParent != null && $data->studentParent->mother_education == 'S2') selected @endif>S2</option>
-                                    <option value="S3" @if ($data->studentParent != null && $data->studentParent->mother_education == 'S3') selected @endif>S3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pekerjaan Ibu *</label>
-                                <input type="string" class="form-control" placeholder="Pekerjaan ibu" name="mother_job" required id="mother_job" value="{{$data->studentParent->mother_job ?? ''}}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pendapatan Ibu *</label>
-                                <select class="form-control" name="mother_income" required id="mother_income">
-                                    <option>==Pilih Salah Satu==</option>
-                                    <option value="Kurang dari Rp 500.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Kurang dari Rp 500.000') selected @endif>Kurang dari Rp 500.000</option>
-                                    <option value="Rp 500.000 - 1.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Rp 500.000 - 1.000.000') selected @endif>Rp 500.000 - 1.000.000</option>
-                                    <option value="Rp 1.000.000 - 2.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Rp 1.000.000 - 2.000.000') selected @endif>Rp 1.000.000 - 2.000.000</option>
-                                    <option value="Rp 3.000.000 - 5.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Rp 3.000.000 - 5.000.000') selected @endif>Rp 3.000.000 - 5.000.000</option>
-                                    <option value="Lebih dari Rp 5.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Lebih dari Rp 5.000.000') selected @endif>Lebih dari Rp 5.000.000</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
-                                <input type="number" class="form-control" placeholder="Nomor HP ibu" name="mother_phone" required id="mother_phone" value="{{$data->studentParent->mother_phone ?? ''}}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Pendapatan Ibu *</label>
+                                        <select class="form-control" name="mother_income" required id="mother_income">
+                                            <option>==Pilih Salah Satu==</option>
+                                            <option value="Kurang dari Rp 500.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Kurang dari Rp 500.000') selected @endif>Kurang dari Rp 500.000</option>
+                                            <option value="Rp 500.000 - 1.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Rp 500.000 - 1.000.000') selected @endif>Rp 500.000 - 1.000.000</option>
+                                            <option value="Rp 1.000.000 - 2.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Rp 1.000.000 - 2.000.000') selected @endif>Rp 1.000.000 - 2.000.000</option>
+                                            <option value="Rp 3.000.000 - 5.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Rp 3.000.000 - 5.000.000') selected @endif>Rp 3.000.000 - 5.000.000</option>
+                                            <option value="Lebih dari Rp 5.000.000" @if($data->studentParent != null && $data->studentParent->mother_income == 'Lebih dari Rp 5.000.000') selected @endif>Lebih dari Rp 5.000.000</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nomor HP Ibu *</label>
+                                        <input type="number" class="form-control" placeholder="Nomor HP ibu" name="mother_phone" required id="mother_phone" value="{{$data->studentParent->mother_phone ?? ''}}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

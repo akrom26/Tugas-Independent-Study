@@ -60,14 +60,14 @@ class Student extends Model
         return $this->belongsTo(IndonesiaProvince::class, 'id_province', 'id');
     }
 
-    public static function countNullColumns($id)
+    public static function countNotNullColumns($id)
     {
         $columns = Schema::getColumnListing('students');
         $student = self::find($id);
 
         $nullCount = 0;
         foreach ($columns as $column) {
-            if (is_null($student->$column)) {
+            if (!is_null($student->$column)) {
                 $nullCount++;
             }
         }

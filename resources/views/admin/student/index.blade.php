@@ -28,7 +28,7 @@
                             <select class="form-control" name="gender" required>
                                 <option>==Kelas==</option>
                                 @foreach ($kelas as $k)
-                                <option value="{{$k->id_school_class}}">{{$k->}}</option>
+                                <option value="{{$k->id_school_class}}">{{$k->classroom}} {{$k->major}} {{$k->sub_class}} ({{$k->program}})</option>
                                 @endforeach
                             </select>
                         </div>

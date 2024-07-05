@@ -12,7 +12,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="text" class="form-control" placeholder="Cari berdasarkan NISN . . ." name="search" value="{{ request('search') }}">
+                            <input type="text" class="form-control" placeholder="Cari berdasarkan nama siswa . . ." name="search" value="{{ request('search') }}">
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-primary" type="submit">Search</button>

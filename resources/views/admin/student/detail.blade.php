@@ -113,7 +113,7 @@
                                             <tr>
                                                 <th>NIK</th>
                                                 <td>:</td>
-                                                <td>{{$data->father_nik}}</td>
+                                                <td>{{$data->studentParent->father_nik}}</td>
                                             </tr>
                                             <tr>
                                                 <th>Nomor HP</th>
@@ -156,7 +156,7 @@
                                             <tr>
                                                 <th>NIK</th>
                                                 <td>:</td>
-                                                <td>{{$data->mother_nik}}</td>
+                                                <td>{{$data->studentParent->mother_nik}}</td>
                                             </tr>
                                             <tr>
                                                 <th>Nomor HP</th>

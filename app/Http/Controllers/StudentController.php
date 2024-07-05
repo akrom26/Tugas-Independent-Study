@@ -126,6 +126,7 @@ class StudentController extends Controller
             $student->pos_code = $request->pos_code;
             $student->name = $request->name;
             $student->status = $request->status;
+            $student->complete_field = 100;
             $student->save();
 
             DB::commit();

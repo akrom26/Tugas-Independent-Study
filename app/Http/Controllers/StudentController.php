@@ -171,7 +171,7 @@ class StudentController extends Controller
             }
 
             // checking existing parent data
-            if ($student->studentParent != null) {
+            if ($student->id_parent != null) {
                 if (($student->studentParent->father_nik != $request->father_nik) || ($student->studentParent->mother_nik != $request->mother_nik)) {
                     $parent = StudentParent::where('father_nik', $request->father_nik)->where('mother_nik', $request->mother_nik)->first();
                     if ($parent != null) {
@@ -183,7 +183,7 @@ class StudentController extends Controller
             }
 
             // checking existing origin school
-            if ($student->originSchool != null) {
+            if ($student->id_origin_school != null) {
                 $originSchool = OriginSchool::where('npsn', $request->npsn_origin_school)->first();
                 if ($request->npsn_origin_school != $student->originSchool->npsn) {
                     if ($originSchool != null) {

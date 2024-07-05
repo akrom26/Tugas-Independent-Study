@@ -337,7 +337,7 @@ class StudentController extends Controller
 
             $message = "Gagal update data siswa dengan nama: " . $request->name . '-> ' . auth()->user()->username . 'reason : ' . $th;
             LogHelper::Log($message);
-            return redirect()->back()->with(['flash' => 'errorAdd']);
+            return redirect()->back()->with(['flash' => 'errorUpdate']);
         }
     }
 

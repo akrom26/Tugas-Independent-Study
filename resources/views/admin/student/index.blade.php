@@ -21,8 +21,16 @@
                 <form action="" method="GET" class="mb-3">
                     @csrf
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-3">
                             <input type="text" class="form-control" placeholder="Cari berdasarkan NISN . . ." name="search" value="{{ request('search') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" name="gender" required>
+                                <option>==Kelas==</option>
+                                @foreach ($kelas as $k)
+                                <option value="{{$k->id_school_class}}">{{$k->}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-primary" type="submit">Search</button>
@@ -93,7 +101,7 @@
                 <div class="alert alert-warning" role="alert">
                     Silahkan download template di bawah ini. Dan sesuaikan dengan data siswa.
                 </div>
-                <a href="https://docs.google.com/spreadsheets/d/1OhOiLMHLSaTfEpJb_zEMX5M5VoqMO6hiwNutf6bavDA/edit?gid=0#gid=0" class="btn btn-success" target="_blank">Download template</a>
+                <a href="https://docs.google.com/spreadsheets/d/1OhOiLMHLSaTfEpJb_zEMX5M5VoqMO6hiwNutf6bavDA/edit?usp=sharing" class="btn btn-success" target="_blank">Download template</a>
                 <hr>
                 <form id="addStudentCsv" method="POST" action="{{Route('bulkAddStudentAction')}}" enctype="multipart/form-data">
                     @csrf

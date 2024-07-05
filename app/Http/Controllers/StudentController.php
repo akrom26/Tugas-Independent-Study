@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Helpers\LogHelper;
 use App\Models\OriginSchool;
+use App\Models\SchoolClass;
 use App\Models\Student;
 use App\Models\StudentParent;
 use Illuminate\Http\Request;
@@ -28,8 +29,9 @@ class StudentController extends Controller
             $data = Student::orderBy('completed_field', 'asc')->paginate(8);
         }
 
+        $kelas = SchoolClass::all();
 
-        return view('admin.student.index', compact('data'));
+        return view('admin.student.index', compact('data', 'kelas'));
     }
 
     public function formAdd()

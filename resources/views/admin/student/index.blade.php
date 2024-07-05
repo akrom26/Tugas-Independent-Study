@@ -93,7 +93,7 @@
                 <div class="alert alert-warning" role="alert">
                     Silahkan download template di bawah ini. Dan sesuaikan dengan data siswa.
                 </div>
-                <a href="{{Route('downloadTemplateAction')}}" class="btn btn-success">Download template</a>
+                <a href="https://docs.google.com/spreadsheets/d/1OhOiLMHLSaTfEpJb_zEMX5M5VoqMO6hiwNutf6bavDA/edit?gid=0#gid=0" class="btn btn-success" target="_blank">Download template</a>
                 <hr>
                 <form id="addStudentCsv" method="POST" action="{{Route('bulkAddStudentAction')}}" enctype="multipart/form-data">
                     @csrf

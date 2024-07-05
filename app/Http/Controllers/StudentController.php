@@ -442,7 +442,7 @@ class StudentController extends Controller
                 $student->date_birth = Carbon::parse($row[5]);
                 if ($row[6] == 'Laki-laki' || $row[6] == 'Laki-Laki' || $row[6] == 'LAKI-LAKI' || $row[6] == 'L') {
                     $student->gender = 'L';
-                } else if ($row[6] == 'Perempuan' || $row[6] == 'perempuan' || $row[6] == 'PEREMPUAN' || $row[6] == 'L') {
+                } else if ($row[6] == 'Perempuan' || $row[6] == 'perempuan' || $row[6] == 'PEREMPUAN' || $row[6] == 'P') {
                     $student->gender = 'P';
                 }
                 $student->address = $row[7];

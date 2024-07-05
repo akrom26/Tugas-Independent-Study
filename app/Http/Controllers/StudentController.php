@@ -170,6 +170,7 @@ class StudentController extends Controller
                 return redirect()->back()->with(['flash' => 'errorAddExistingStudent']);
             }
 
+            $student = Student::where('id_student', $request->id)->first();
             // checking existing parent data
             if ($student->id_parent != null) {
                 if (($student->studentParent->father_nik != $request->father_nik) || ($student->studentParent->mother_nik != $request->mother_nik)) {

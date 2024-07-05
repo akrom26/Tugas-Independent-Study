@@ -248,25 +248,25 @@ class StudentController extends Controller
                     LogHelper::Log($message);
                     return redirect()->back()->with(['flash' => 'errorAddExistingParent']);
                 } else if ($request->id_parent == null) {
-                        $parent = new StudentParent();
-                        $parent->father_name = $request->father_name;
-                        $parent->father_nik = $request->father_nik;
-                        $parent->father_birth_date = $request->father_date_birth;
-                        $parent->father_birth_place = $request->father_place_birth;
-                        $parent->father_job = $request->father_job;
-                        $parent->father_education = $request->father_education;
-                        $parent->father_income = $request->father_income;
-                        $parent->father_phone = $request->father_phone;
-                        $parent->mother_name = $request->mother_name;
-                        $parent->mother_nik = $request->mother_nik;
-                        $parent->mother_birth_date = $request->mother_date_birth;
-                        $parent->mother_birth_place = $request->mother_place_birth;
-                        $parent->mother_job = $request->mother_job;
-                        $parent->mother_education = $request->mother_education;
-                        $parent->mother_income = $request->mother_income;
-                        $parent->mother_phone = $request->mother_phone;
-                        $parent->save();
-                        $id_parent = $parent->id_parent;
+                    $parent = new StudentParent();
+                    $parent->father_name = $request->father_name;
+                    $parent->father_nik = $request->father_nik;
+                    $parent->father_birth_date = $request->father_date_birth;
+                    $parent->father_birth_place = $request->father_place_birth;
+                    $parent->father_job = $request->father_job;
+                    $parent->father_education = $request->father_education;
+                    $parent->father_income = $request->father_income;
+                    $parent->father_phone = $request->father_phone;
+                    $parent->mother_name = $request->mother_name;
+                    $parent->mother_nik = $request->mother_nik;
+                    $parent->mother_birth_date = $request->mother_date_birth;
+                    $parent->mother_birth_place = $request->mother_place_birth;
+                    $parent->mother_job = $request->mother_job;
+                    $parent->mother_education = $request->mother_education;
+                    $parent->mother_income = $request->mother_income;
+                    $parent->mother_phone = $request->mother_phone;
+                    $parent->save();
+                    $id_parent = $parent->id_parent;
                 } else {
                     $data = [
                         'father_name' => $request->father_name,
@@ -309,7 +309,7 @@ class StudentController extends Controller
                 'pos_code' => $request->pos_code,
                 'name' => $request->name,
                 'status' => $request->status,
-
+                'nisn' => $request->nisn,
             ];
 
             if ($request->photo != null) {

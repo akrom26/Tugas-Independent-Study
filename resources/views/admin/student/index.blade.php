@@ -58,7 +58,7 @@
                                 @endif
                                 <td>
                                     <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{ $item->completed_field }}" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ $item->completed_field }}%">{{ $item->completed_field }}%</div>
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ $item->completed_field }}%"></div>
                                     </div>
                                 </td>
                                 <td>

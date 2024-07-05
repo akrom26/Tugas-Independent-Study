@@ -36,6 +36,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nama Siswa</th>
                                 <th scope="col">NIS</th>
+                                <th scope="col">NISN</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Kelengkapan data</th>
                                 <th scope="col">Aksi</th>
@@ -47,6 +48,7 @@
                                 <th scope="row">{{ $data->firstItem() + $loop->index }}</th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->nis }}</td>
+                                <td>{{ $item->nisn }}</td>
                                 @if($item->schoolClass == null)
                                 <td>
                                     <span class="badge rounded-pill text-bg-danger" style="background-color: #EE2737 !important;">Belum memiliki kelas</span>

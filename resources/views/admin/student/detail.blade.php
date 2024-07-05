@@ -104,6 +104,7 @@
                                             <tr>
                                                 <th colspan="3" style="text-align: left;">Data Ayah</th>
                                             </tr>
+                                            @if ($data->studentParent != null)
                                             <tr>
                                                 <th>Nama</th>
                                                 <td>:</td>
@@ -142,6 +143,8 @@
                                             <tr>
                                                 <th colspan="3"><hr></th>
                                             </tr>
+                                            @endif
+                                            @if ($data->studentParent != null)
                                             <tr>
                                                 <th colspan="3" style="text-align: left;">Data Ibu</th>
                                             </tr>
@@ -180,6 +183,7 @@
                                                 <td>:</td>
                                                 <td>{{$data->studentParent->mother_income}}</td>
                                             </tr>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

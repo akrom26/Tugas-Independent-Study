@@ -317,7 +317,7 @@ class StudentController extends Controller
             }
 
             if ($request->identity != null) {
-                $data['identity'] = $request->identity->store('public/identity');
+                $data['identity'] = $request->identity->store('public/scan_kk');
             }
 
             Student::where('id_student', $student->id_student)->update($data);

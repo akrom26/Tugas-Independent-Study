@@ -21,16 +21,8 @@
                 <form action="" method="GET" class="mb-3">
                     @csrf
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-10">
                             <input type="text" class="form-control" placeholder="Cari berdasarkan NISN . . ." name="search" value="{{ request('search') }}">
-                        </div>
-                        <div class="col-md-3">
-                            <select class="form-control" name="gender" required>
-                                <option>==Kelas==</option>
-                                @foreach ($kelas as $k)
-                                <option value="{{$k->id_school_class}}">{{$k->classroom}} {{$k->major}} {{$k->sub_class}} ({{$k->program}})</option>
-                                @endforeach
-                            </select>
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-primary" type="submit">Search</button>

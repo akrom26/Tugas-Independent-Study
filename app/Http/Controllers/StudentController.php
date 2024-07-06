@@ -23,6 +23,7 @@ class StudentController extends Controller
         $searchTerm = $request->search;
         if ($searchTerm) {
             $data = Student::where('nisn', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('name', 'LIKE', "%{$searchTerm}%")
                 ->orderBy('completed_field', 'asc')
                 ->paginate(8);
         } else {

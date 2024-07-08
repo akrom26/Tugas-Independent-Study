@@ -15,24 +15,46 @@ use Carbon\Carbon;
 use DateTime;
 use Faker\Core\File;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
 
 class StudentController extends Controller
 {
     public function index(Request $request)
     {
-        $searchTerm = $request->search;
-        if ($searchTerm) {
-            $data = Student::where('nisn', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('name', 'LIKE', "%{$searchTerm}%")
-                ->orderBy('completed_field', 'asc')
-                ->paginate(8);
-        } else {
-            $data = Student::orderBy('completed_field', 'asc')->paginate(8);
+        if ($request->ajax()) {
+            $data = Student::with('schoolClass')->select('students.*');
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('class', function ($row) {
+                    if ($row->schoolClass == null) {
+                        return '<span class="badge rounded-pill text-bg-danger" style="background-color: #EE2737 !important;">Belum memiliki kelas</span>';
+                    } else {
+                        return $row->schoolClass->classroom . ' - ' . $row->schoolClass->major . ' - ' . $row->schoolClass->sub_class . ' (' . $row->schoolClass->program . ')';
+                    }
+                })
+                ->addColumn('progress', function ($row) {
+                    return '<div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="' . $row->completed_field . '" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: ' . $row->completed_field . '%">'. $row->completed_field . '%</div>';
+                })
+                ->addColumn('action', function ($row) {
+                    $btn = '<div class="btn-group" role="group">
+                            <a href="' . route('detailStudent', ['id' => $row->id_student]) . '" class="btn btn-warning"><i class="ti ti-info-circle-filled"></i></a>
+                            <a href="' . route('formEdit', ['id' => $row->id_student]) . '" class="btn btn-success"><i class="ti ti-edit"></i></a>
+                            <a data-role="' . auth()->user()->role . '" data-id="' . $row->id_student . '" onclick="confirmDeleteSiswa(event)" type="button" class="btn btn-danger"><i class="ti ti-trash-x-filled"></i></a>
+                            <a href="' . route('downloadAction', ['id' => $row->id_student]) . '" class="btn btn-primary ' . ($row->completed_field < 100 ? 'disabled' : '') . '" ' . ($row->completed_field < 100 ? 'disabled' : '') . '>
+                                <i class="ti ti-download"></i>
+                            </a>
+                        </div>';
+                    return $btn;
+                })
+                ->rawColumns(['class', 'progress', 'action'])
+                ->make(true);
         }
 
         $kelas = SchoolClass::all();
 
-        return view('admin.student.index', compact('data', 'kelas'));
+        return view('admin.student.index', compact('kelas'));
     }
 
     public function formAdd()

@@ -18,19 +18,8 @@
                         </button>
                     </div>
                 </div>
-                <form action="" method="GET" class="mb-3">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" placeholder="Cari berdasarkan NISN atau Nama . . ." name="search" value="{{ request('search') }}">
-                        </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
                 <div class="table-scrollable">
-                    <table class="table table-striped">
+                    <table id="studentTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -43,42 +32,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
-                            <tr>
-                                <th scope="row">{{ $data->firstItem() + $loop->index }}</th>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->nis }}</td>
-                                <td>{{ $item->nisn }}</td>
-                                @if($item->schoolClass == null)
-                                <td>
-                                    <span class="badge rounded-pill text-bg-danger" style="background-color: #EE2737 !important;">Belum memiliki kelas</span>
-                                </td>
-                                @else
-                                <td>{{$item->schoolClass->classroom}} - {{$item->schoolClass->major}} - {{$item->schoolClass->sub_class}} ({{$item->schoolClass->program}})</td>
-                                @endif
-                                <td>
-                                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{ $item->completed_field }}" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ $item->completed_field }}%"></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a href="{{Route('detailStudent', ['id' => $item->id_student])}}" class=" btn btn-warning"><i class="ti ti-info-circle-filled"></i></a>
-                                        <a href="{{Route('formEdit', ['id' => $item->id_student])}}" class=" btn btn-success"><i class="ti ti-edit"></i></a>
-                                        <a data-role="{{auth()->user()->role}}" data-id="{{ $item->id_student }}" onclick="confirmDeleteSiswa(event)" type="button" class="btn btn-danger"><i class="ti ti-trash-x-filled"></i></a>
-                                        <a href="{{ route('downloadAction', ['id' => $item->id_student]) }}" class="btn btn-primary {{ $item->completed_field < 100 ? 'disabled' : '' }}" {{ $item->completed_field < 100 ? 'disabled' : '' }}>
-                                            <i class="ti ti-download"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
+                            <!-- Data akan diisi oleh DataTables -->
                         </tbody>
                     </table>
-                </div>
-
-                <div class="d-flex justify-content-end">
-                    {{ $data->appends(['search' => request('search'), 'jenjang' => request('jenjang')])->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
@@ -115,6 +71,85 @@
 @endsection
 
 @section('script')
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#studentTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('indexStudent') }}",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'nis',
+                    name: 'nis'
+                },
+                {
+                    data: 'nisn',
+                    name: 'nisn'
+                },
+                {
+                    data: 'class',
+                    name: 'class',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'progress',
+                    name: 'progress',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            pageLength: 10, // Default number of rows to display
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    className: 'btn btn-success'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    className: 'btn btn-danger'
+                },
+                {
+                    extend: 'print',
+                    className: 'btn btn-danger'
+                }
+            ]
+        });
+    });
+</script>
+
+
 <script>
     function confirmDeleteSiswa(event) {
         event.preventDefault();

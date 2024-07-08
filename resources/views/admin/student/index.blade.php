@@ -85,6 +85,10 @@
 <script>
     $(document).ready(function() {
         $('#studentTable').DataTable({
+            lengthMenu: [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
             processing: true,
             serverSide: true,
             ajax: "{{ route('indexStudent') }}",
@@ -125,24 +129,23 @@
                     searchable: false
                 },
             ],
-            dom: 'Bfrtip',
+            dom: 'Blfrtip',
             lengthMenu: [
-                [10, 25, 50, 100],
-                [10, 25, 50, 100]
+                [10, 25, 50, -1],
+                [10, 25, 50, 'All']
             ],
             pageLength: 10, // Default number of rows to display
-            buttons: [
-                {
+            buttons: [{
                     extend: 'excelHtml5',
-                    className: 'btn btn-success'
+                    className: 'btn btn-success mb-2'
                 },
                 {
                     extend: 'pdfHtml5',
-                    className: 'btn btn-danger'
+                    className: 'btn btn-danger mb-2'
                 },
                 {
                     extend: 'print',
-                    className: 'btn btn-danger'
+                    className: 'btn btn-danger mb-2'
                 }
             ]
         });
